@@ -21,6 +21,7 @@
                 textEmail);
         }
     }
+
     function createMainDiv() {
         let content = document.querySelector(".content");
         let divElementMain = document.createElement("div");
@@ -41,6 +42,7 @@
         emailField.classList.add("email-input");
         return emailField;
     }
+
     function createTextEmail() {
         let divElementEmailText = document.createElement("div");
         let textEmail = document.createTextNode("E-mail");
@@ -54,6 +56,7 @@
         passwordField.classList.add("password-input");
         return passwordField;
     }
+
     function createTextPassword() {
         let textEmailDiv2 = document.createElement("div");
         let texEmail2 = document.createTextNode("Пароль");
@@ -68,6 +71,7 @@
         registerButton.append(document.createTextNode("Зарегистрироваться"));
         return registerButton
     }
+
     function createButtonExit() {
         let exitButton = document.createElement("button");
         exitButton.classList.add("exitButton");

@@ -2,23 +2,16 @@
     app.PageRegister = {
         draw: function () {
             let content = document.querySelector(".content");
-
             let divElementMain = createMainDiv();
-
             const textRegistr = createTextRegistr();
-
             let inputElementEmail = createInputEmail();
             const textEmail = createTextEmail();
-
             let inputElementPhone = createInputPhone();
             const textPhone = createTextPhone();
-
             let inputPassword = createInputPassword();
             let textPassword = createTextPassword();
-
             let inputPasswordСonfirm = createInputPasswordСonfirm();
             let textPasswordСonfirm = createTextPasswordСonfirm();
-
             let exitButton = createButtonExit();
             let registerButton = createButtonRegistr();
             exitButton.addEventListener("click", goToExit);
@@ -35,10 +28,10 @@
                 textPasswordСonfirm,
                 exitButton,
                 registerButton
-                )
-
+            )
         }
     }
+
     function createMainDiv() {
         let content = document.querySelector(".content");
         let divElementMain = document.createElement("div");
@@ -46,6 +39,7 @@
         content.append(divElementMain);
         return divElementMain;
     }
+
     function createTextRegistr() {
         let divElementExit = document.createElement("div");
         divElementExit.append(document.createTextNode("Регистрация"));
@@ -58,6 +52,7 @@
         emailField.classList.add("email-input");
         return emailField;
     }
+
     function createTextEmail() {
         let divElementEmailText = document.createElement("div");
         let textEmail = document.createTextNode("E-mail");
@@ -71,6 +66,7 @@
         emailField.classList.add("inputPhone");
         return emailField;
     }
+
     function createTextPhone() {
         let divElementEmailText = document.createElement("div");
         let textEmail = document.createTextNode("Телефон");
@@ -84,6 +80,7 @@
         passwordField.classList.add("password-input-register");
         return passwordField;
     }
+
     function createTextPassword() {
         let textEmailDiv2 = document.createElement("div");
         let texEmail2 = document.createTextNode("Пароль");
@@ -97,6 +94,7 @@
         passwordField.classList.add("password-input-confirm");
         return passwordField;
     }
+
     function createTextPasswordСonfirm() {
         let textEmailDiv2 = document.createElement("div");
         let texEmail2 = document.createTextNode("Подтвердите пароль");
@@ -105,13 +103,13 @@
         return textEmailDiv2;
     }
 
-
     function createButtonRegistr() {
         let registerButton = document.createElement("button");
         registerButton.classList.add("registerButtonText");
         registerButton.append(document.createTextNode("Зарегистрироваться"));
         return registerButton
     }
+
     function createButtonExit() {
         let exitButton = document.createElement("button");
         exitButton.classList.add("exitButtonText");
@@ -123,4 +121,5 @@
         document.querySelector(".content").innerHTML = "";
         app.PageLogin.draw();
     }
+
 })(AdsBoard);

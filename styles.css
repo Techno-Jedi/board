@@ -250,10 +250,7 @@ body {
         margin-bottom: 1rem;
         border: 1px solid black;
     }
-    .price{
-        margin-left: 1rem;
-        font-size: 1.5rem;
-    }
+
     .description{
         display: flex;
         flex-direction: column;
@@ -276,5 +273,9 @@ body {
         width: 12rem;
         margin-left: auto;
         margin-right: auto;
+    }
+    .price{
+        margin-left: 1rem;
+        font-size: 1.5rem;
     }
 }
