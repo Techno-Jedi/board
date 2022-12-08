@@ -11,9 +11,9 @@
             let descriptionDiv = createDescriptionDiv();
             let divSalesman = createDivSalesman();
             divElementMain.append(divElement);
-            divElement.append(imagesAndPhone, priceDiv,descriptionDivAndSalesman,);
+            divElement.append(imagesAndPhone, descriptionDivAndSalesman);
             imagesAndPhone.append(img, divElementPhone);
-            descriptionDivAndSalesman.append(descriptionDiv, divSalesman, divSalesman);
+            descriptionDivAndSalesman.append(descriptionDiv, priceDiv, divSalesman);
         }
     }
 
