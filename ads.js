@@ -2,17 +2,16 @@
     app.PageAds = {
         draw: function () {
             let divElementMain = createMainDiv();
-            let divElement = createdivElement()
+            let divElement = createdivElement();
+            let priceDiv = createPriceDiv();
             let imagesAndPhone = createImagesAndPhone();
             let img = createImg();
             let divElementPhone = createElementPhone();
             let descriptionDivAndSalesman = createDescriptionDivAndSalesman();
             let descriptionDiv = createDescriptionDiv();
-            let priceDiv = createPriceDiv();
             let divSalesman = createDivSalesman();
-
             divElementMain.append(divElement);
-            divElement.append(imagesAndPhone, descriptionDivAndSalesman, priceDiv);
+            divElement.append(imagesAndPhone, priceDiv,descriptionDivAndSalesman,);
             imagesAndPhone.append(img, divElementPhone);
             descriptionDivAndSalesman.append(descriptionDiv, divSalesman, divSalesman);
         }

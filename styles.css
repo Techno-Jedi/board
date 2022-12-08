@@ -168,7 +168,6 @@ body {
     width: 12rem;
     margin: 1rem;
 }
-
 .image{
     display: flex;
     flex-direction: row;
@@ -205,17 +204,18 @@ body {
     position: relative;
     box-sizing: border-box;
     height: 2rem;
-    margin-left:auto;
+    order: 1;
+    margin-left: auto;
+    left: 0;
     font-size: 1.5rem;
     white-space: nowrap;
-    padding: 1rem;
 }
 .salesman{
     display: flex;
     flex-flow: column;
     position: relative;
     box-sizing: border-box;
-    margin: 0.3rem 0rem 0rem 1rem;
+    margin: 0.3rem 0 0 1rem;
     text-align: center;
 }
 .surname{
@@ -223,7 +223,7 @@ body {
     text-align: center;
 }
 .description-salesman{
-    height: 15rem;
+    /*height: 15rem;*/
     margin: 0 1rem 1rem 0;
 }
 
@@ -238,10 +238,12 @@ body {
     }
     .imageDescriptionPrice{
         display: flex;
+        align-items: flex-start;
         flex-direction: column;
         position: relative;
         height: auto;
         margin: 0 0 1rem 0;
+
     }
     .image{
         height: 12rem;
@@ -250,7 +252,17 @@ body {
         margin-bottom: 1rem;
         border: 1px solid black;
     }
-
+    .price{
+        display: flex;
+        flex-flow: row;
+        position: relative;
+        box-sizing: border-box;
+        height: 2rem;
+        font-size: 1.5rem;
+        white-space: nowrap;
+        order: 0;
+        margin-right: auto;
+    }
     .description{
         display: flex;
         flex-direction: column;
@@ -274,8 +286,5 @@ body {
         margin-left: auto;
         margin-right: auto;
     }
-    .price{
-        margin-left: 1rem;
-        font-size: 1.5rem;
-    }
+
 }
