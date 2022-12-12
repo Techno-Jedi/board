@@ -9,8 +9,8 @@
             let textPassword = createTextPassword();
             let exitButton = createButtonExit();
             let registerButton = createButtonRegistr();
-            registerButton.addEventListener("click", goToRegister);
-
+            // registerButton.addEventListener("click", goToRegister);
+            // exitButton.addEventListener("click", goToExit);
             divElementMain.append(
                 textLogin,
                 inputElementEmail,
@@ -40,6 +40,7 @@
     function createInputEmail() {
         let emailField = document.createElement("input");
         emailField.classList.add("email-input");
+        emailField.setAttribute("name", "email");
         return emailField;
     }
 
@@ -54,6 +55,7 @@
     function createInputPassword() {
         let passwordField = document.createElement("input");
         passwordField.classList.add("password-input");
+        passwordField.setAttribute("name", "password")
         return passwordField;
     }
 
@@ -79,8 +81,11 @@
         return exitButton;
     }
 
-    function goToRegister() {
-        document.querySelector(".content").innerHTML = "";
-        app.PageRegister.draw();
-    }
+    // function goToRegister() {
+    //
+    // }
+    // function goToExit() {
+    // }
+
 })(AdsBoard);
+

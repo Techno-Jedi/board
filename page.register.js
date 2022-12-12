@@ -50,6 +50,7 @@
     function createInputEmail() {
         let emailField = document.createElement("input");
         emailField.classList.add("email-input");
+        emailField.setAttribute("name", "email");
         return emailField;
     }
 
@@ -64,6 +65,7 @@
     function createInputPhone() {
         let emailField = document.createElement("input");
         emailField.classList.add("inputPhone");
+        emailField.setAttribute("name", "phone");
         return emailField;
     }
 
@@ -78,6 +80,7 @@
     function createInputPassword() {
         let passwordField = document.createElement("input");
         passwordField.classList.add("password-input-register");
+        passwordField.setAttribute("name", "password")
         return passwordField;
     }
 
@@ -119,7 +122,8 @@
 
     function goToExit() {
         document.querySelector(".content").innerHTML = "";
-        app.PageLogin.draw();
+        AdsBoard.PageLogin.draw();
     }
 
 })(AdsBoard);
+
