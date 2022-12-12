@@ -2,14 +2,14 @@
 $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
 $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_EMAIL);// поменять фильтр пароля
 $password = md5($password. "******");
-// $phone = filter_var(trim($_POST['phone']), FILTER_SANITIZE_EMAIL);
+$phone = filter_var(trim($_POST['phone']), FILTER_SANITIZE_EMAIL);// поменять фильтр телефона
 
-if($email == "" || $password == ""){
-echo "не все поля заполненны";
-}else{
+if(!empty($_POST['password'] && $_POST['email'] && $_POST['phone']) ){
 $user = new Users();
-$user->createUser($email, $password,);
+$user->createUser($email,$password,$phone);
 header('Location: /index2.html');
+}else{
+echo "не все поля заполнены";
 };
 
 class Database
@@ -40,10 +40,9 @@ class Model
 
 class Users extends Model
 {
-    public function createUser($email, $password)
+    public function createUser($email, $password, $phone)
     {
-        Database::query("INSERT INTO `users` (`email`, `password`) VALUES ('" . $email . "', '" . $password . "')" );
+        Database::query("INSERT INTO `users` (`email`, `password`, `phone`) VALUES ('" . $email . "', '" . $password . "', '" . $phone . "')" );
     }
-
 }
 exit();
