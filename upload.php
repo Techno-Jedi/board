@@ -11,15 +11,17 @@ if (!empty($email && $password)) {
     $user = new Users();
     $user->getUser($email, $password);
 };
-
-$phone = $_REQUEST['phone'];
-
+if (!empty($_REQUEST['phone'])) {
+    $phone = $_REQUEST['phone'];
+} else {
+    $phone = "";
+};
 if (!empty($email && $phone && $password)) {
     $user = new Users();
     $user->createUser($email, $password, $phone);
     header('Location: /index2.html');
 } else {
-    echo "не все поля заполнены";
+    echo "Пароль не верный или не все поля заполнены";
 }
 
 class Database
@@ -47,7 +49,6 @@ class Model
         Database::connect();
     }
 };
-
 class Users extends Model
 {
     public function createUser($email, $password, $phone)
@@ -64,8 +65,6 @@ class Users extends Model
             && $password === $user["password"]
         ) {
             header('Location: /index2.html');
-        } else {
-            echo "Пароль не верный";
         };
     }
 }
