@@ -9,8 +9,6 @@
             let textPassword = createTextPassword();
             let exitButton = createButtonExit();
             let registerButton = createButtonRegistr();
-            // registerButton.addEventListener("click", goToRegister);
-            // exitButton.addEventListener("click", goToExit);
             divElementMain.append(
                 textLogin,
                 inputElementEmail,
@@ -19,6 +17,8 @@
                 exitButton,
                 textPassword,
                 textEmail);
+            registerButton.addEventListener("click", goToRegister);
+            exitButton.addEventListener("DOMContentLoaded", goToExit);
         }
     }
 
@@ -34,6 +34,7 @@
         let divElementExit = document.createElement("div");
         divElementExit.append(document.createTextNode("Вход"));
         divElementExit.classList.add("pageLoginForm");
+        divElementExit.setAttribute("name", "login");
         return divElementExit;
     }
 
@@ -81,11 +82,15 @@
         return exitButton;
     }
 
-    // function goToRegister() {
-    //
-    // }
-    // function goToExit() {
-    // }
+    function goToRegister() {
+        document.querySelector(".content").innerHTML = "";
+        AdsBoard.PageRegister.draw();
+    }
+    function goToExit() {
+        document.querySelector(".content").innerHTML = "";
+        AdsBoard.PageLogin.draw();
+       console.log(createInputEmail.value)
+    }
 
 })(AdsBoard);
 

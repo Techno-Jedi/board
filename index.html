@@ -9,10 +9,10 @@
     <script>
         let AdsBoard = {};
     </script>
-    <script src="header.js"></script>
-    <script src="page.login.js"></script>
-    <script src="page.register.js"></script>
-    <script src="ads.js"></script>
+    <script defer src="header.js"></script>
+    <script defer src="page.login.js"></script>
+    <script defer src="page.register.js"></script>
+    <script defer src="ads.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             AdsBoard.Header.draw();
@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="header"></div>
-<form action="upload2.php" class="content" method="post">
+<form action="upload.php" class="content" method="POST">
 </form>
 </body>
 </html>

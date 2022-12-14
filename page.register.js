@@ -43,6 +43,7 @@
     function createTextRegistr() {
         let divElementExit = document.createElement("div");
         divElementExit.append(document.createTextNode("Регистрация"));
+        divElementExit.setAttribute("name", "login");
         divElementExit.classList.add("pageLoginForm");
         return divElementExit;
     }

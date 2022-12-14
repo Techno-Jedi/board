@@ -1,16 +1,26 @@
 <?php
-$email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-$password = filter_var(trim($_POST['password']), FILTER_SANITIZE_EMAIL);// поменять фильтр пароля
-$password = md5($password. "******");
-$phone = filter_var(trim($_POST['phone']), FILTER_SANITIZE_EMAIL);// поменять фильтр телефона
+// $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+// $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_EMAIL); // поменять фильтр пароля
+// // $password = md5($password . "******");
+// $phone = ""; // поменять фильтр телефона
 
-if(!empty($_POST['password'] && $_POST['email'] && $_POST['phone']) ){
-$user = new Users();
-$user->createUser($email,$password,$phone);
-header('Location: /index2.html');
-}else{
-echo "не все поля заполнены";
+$email = $_REQUEST['email'];
+$password = $_REQUEST['password'];
+
+if (!empty($email && $password)) {
+    $user = new Users();
+    $user->getUser($email, $password);
 };
+
+$phone = $_REQUEST['phone'];
+
+if (!empty($email && $phone && $password)) {
+    $user = new Users();
+    $user->createUser($email, $password, $phone);
+    header('Location: /index2.html');
+} else {
+    echo "не все поля заполнены";
+}
 
 class Database
 {
@@ -42,7 +52,20 @@ class Users extends Model
 {
     public function createUser($email, $password, $phone)
     {
-        Database::query("INSERT INTO `users` (`email`, `password`, `phone`) VALUES ('" . $email . "', '" . $password . "', '" . $phone . "')" );
+        Database::query("INSERT INTO `users` (`email`, `password`, `phone`) VALUES ('" . $email . "', '" . $password . "', '" . $phone . "')");
+    }
+    public function getUser($email, $password)
+    {
+        $query = Database::query("SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$password'");
+        $user = Database::fetch($query);
+        if (
+            is_array($user)
+            && $email === $user["email"]
+            && $password === $user["password"]
+        ) {
+            header('Location: /index2.html');
+        } else {
+            echo "Пароль не верный";
+        };
     }
 }
-exit();
