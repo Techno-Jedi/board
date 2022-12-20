@@ -15,14 +15,15 @@
             let exitButton = createButtonExit();
             let registerButton = createButtonRegistr();
             exitButton.addEventListener("click", goToExit);
+            registerButton.addEventListener("click", goToRegister);
 
             divElementMain.append(
                 textRegistr,
                 inputElementEmail,
                 inputElementPhone,
+                inputPassword,
                 textPhone,
                 textEmail,
-                inputPassword,
                 textPassword,
                 inputPasswordСonfirm,
                 textPasswordСonfirm,
@@ -52,6 +53,7 @@
         let emailField = document.createElement("input");
         emailField.classList.add("email-input");
         emailField.setAttribute("name", "email");
+        emailField.setAttribute("type", "text");
         return emailField;
     }
 
@@ -67,6 +69,7 @@
         let emailField = document.createElement("input");
         emailField.classList.add("inputPhone");
         emailField.setAttribute("name", "phone");
+        emailField.setAttribute("type", "number");
         return emailField;
     }
 
@@ -82,6 +85,7 @@
         let passwordField = document.createElement("input");
         passwordField.classList.add("password-input-register");
         passwordField.setAttribute("name", "password")
+        passwordField.setAttribute("type", "text")
         return passwordField;
     }
 
@@ -124,6 +128,32 @@
     function goToExit() {
         document.querySelector(".content").innerHTML = "";
         AdsBoard.PageLogin.draw();
+    }
+
+    function goToRegister(event) {
+        event.preventDefault();
+        let formData = new FormData();
+        let email = document.querySelector(".email-input").value
+        let phone = document.querySelector(".inputPhone").value
+        let password = document.querySelector(".password-input-register").value
+        if (email !== "" && phone !== "" && password !== "") {
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('password', password);
+            fetch("upload.php", {
+                method: 'POST',
+                body: formData,
+            }).then(function (response) {
+                if (response.status >= 200 && response.status < 300) {
+                    document.querySelector(".content").innerHTML = "";
+                    return AdsBoard.PageAds.draw()
+                }
+
+            })
+        } else {
+            alert("Не все поля заполнены")
+            return AdsBoard.PageRegister.draw();
+        }
     }
 
 })(AdsBoard);

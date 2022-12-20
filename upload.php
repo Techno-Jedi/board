@@ -4,24 +4,24 @@
 // // $password = md5($password . "******");
 // $phone = ""; // поменять фильтр телефона
 
-$email = $_REQUEST['email'];
-$password = $_REQUEST['password'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$phone = "";
 
 if (!empty($email && $password)) {
     $user = new Users();
     $user->getUser($email, $password);
+    print_r( is_array($user));
 };
-if (!empty($_REQUEST['phone'])) {
-    $phone = $_REQUEST['phone'];
+if (!empty($_POST['phone'])) {
+    $phone = $_POST['phone'];
 } else {
-    $phone = "";
+
 };
 if (!empty($email && $phone && $password)) {
     $user = new Users();
     $user->createUser($email, $password, $phone);
-    header('Location: /index2.html');
-} else {
-    echo "Пароль не верный или не все поля заполнены";
+
 }
 
 class Database
@@ -64,7 +64,8 @@ class Users extends Model
             && $email === $user["email"]
             && $password === $user["password"]
         ) {
-            header('Location: /index2.html');
+         echo "OK";
+         exit();
         };
     }
 }

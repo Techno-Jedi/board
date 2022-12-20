@@ -18,7 +18,7 @@
                 textPassword,
                 textEmail);
             registerButton.addEventListener("click", goToRegister);
-            exitButton.addEventListener("DOMContentLoaded", goToExit);
+            exitButton.addEventListener("click", goToExit);
         }
     }
 
@@ -42,6 +42,7 @@
         let emailField = document.createElement("input");
         emailField.classList.add("email-input");
         emailField.setAttribute("name", "email");
+        emailField.setAttribute("type", "text");
         return emailField;
     }
 
@@ -57,6 +58,7 @@
         let passwordField = document.createElement("input");
         passwordField.classList.add("password-input");
         passwordField.setAttribute("name", "password")
+        passwordField.setAttribute("type", "text")
         return passwordField;
     }
 
@@ -86,11 +88,33 @@
         document.querySelector(".content").innerHTML = "";
         AdsBoard.PageRegister.draw();
     }
-    function goToExit() {
-        document.querySelector(".content").innerHTML = "";
-        AdsBoard.PageLogin.draw();
-       console.log(createInputEmail.value)
-    }
 
+    function goToExit(event) {
+        event.preventDefault();
+        let formData = new FormData();
+        let email = document.querySelector(".email-input").value;
+        let password = document.querySelector(".password-input").value;
+        if (email !== "" && password !== "") {
+            formData.append('email', email);
+            formData.append('password', password);
+            fetch("upload.php", {
+                method: 'POST',
+                body: formData,
+            }).then(response => response.text())
+                .then(function (response) {
+                    if (response === "OK") {
+                        document.querySelector(".content").innerHTML = ""
+                        return AdsBoard.PageAds.draw();
+                    } else {
+                        alert("Пароль не верный")
+                    }
+                })
+        } else {
+            alert("Не все поля заполнены");
+            document.querySelector(".content").innerHTML = "";
+            return AdsBoard.PageLogin.draw();
+        }
+
+    }
 })(AdsBoard);
 
