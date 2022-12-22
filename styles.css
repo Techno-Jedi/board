@@ -15,6 +15,8 @@ body {
     left: 50%;
 }
 .header {
+    display: flex;
+    justify-content: space-between;
     height: 3.75rem;
     line-height: 3.75rem;
     padding-left: 1.25rem;
@@ -183,9 +185,7 @@ body {
     background-color: #0EA5E9;
 }
 .phone p{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 .description{
     display: flex;
@@ -226,7 +226,11 @@ body {
     /*height: 15rem;*/
     margin: 0 1rem 1rem 0;
 }
-
+.loadingAndSave{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
 @media  (max-width: 500px) {
     .boardAds {
         display: flex;
@@ -286,5 +290,84 @@ body {
         margin-left: auto;
         margin-right: auto;
     }
+    .loadingAndSave{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: auto;
+    }
+}
+.ads{
+    flex-grow: 1;
+}
+.exit{
+    position: relative;
+}
+.my_ads{
+    position: relative;
 
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+.input_form_div{
+    display: flex;
+    flex-direction:column;
+    height: 4rem;
+    margin: 3rem 0 0 0;
+ }
+p{
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19px;
+    color: #000000;
+}
+.input_form{
+    position: relative;
+    height: 3rem;
+    margin: 0;
+}
+.textarea_div{
+    display: flex;
+    flex-direction:column;
+    height: 10rem;
+    margin: 3rem 0 2rem 0;
+}
+.textarea{
+    position: relative;
+    height: 10rem;
+    margin: 0;
+}
+
+.adsForm{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.input_form_price{
+    position: relative;
+    height: 3rem;
+    margin: 0 0 3rem 0;
+}
+.input_price_div{
+    display: flex;
+    flex-direction:column;
+    height: 4rem;
+    margin: 0 0 2rem 0;
+}
+.input_price{
+    position: relative;
+    height: 3rem;
+    margin: 0;
+}
+.loading{
+    display: flex;
+    height: 3rem;
+    width: 12rem;
+    background-color: #0EA5E9;
+    margin: 1rem;
+}
+.loading p{
+    margin: auto;
 }
