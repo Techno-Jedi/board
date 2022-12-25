@@ -3,16 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="fe686dd9-a96e-4429-8ec6-3f9294f543f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ads.js" beforeDir="false" afterPath="$PROJECT_DIR$/ads.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/index2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/page.login.js" beforeDir="false" afterPath="$PROJECT_DIR$/page.login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page.register.js" beforeDir="false" afterPath="$PROJECT_DIR$/page.register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/upload.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -67,7 +77,18 @@
       <workItem from="1671368464996" duration="1876000" />
       <workItem from="1671438867338" duration="2130000" />
       <workItem from="1671457977913" duration="19891000" />
-      <workItem from="1671532097598" duration="2943000" />
+      <workItem from="1671532097598" duration="3373000" />
+      <workItem from="1671625107146" duration="7950000" />
+      <workItem from="1671641544306" duration="8486000" />
+      <workItem from="1671719198576" duration="845000" />
+      <workItem from="1671720755029" duration="3207000" />
+      <workItem from="1671732293538" duration="1734000" />
+      <workItem from="1671791110335" duration="13160000" />
+      <workItem from="1671816544785" duration="4364000" />
+      <workItem from="1671879427248" duration="11380000" />
+      <workItem from="1671898510732" duration="2790000" />
+      <workItem from="1671955436103" duration="9626000" />
+      <workItem from="1671981981000" duration="4921000" />
     </task>
     <servers />
   </component>

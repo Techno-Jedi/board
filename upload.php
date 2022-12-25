@@ -11,7 +11,7 @@ $phone = "";
 if (!empty($email && $password)) {
     $user = new Users();
     $user->getUser($email, $password);
-    print_r( is_array($user));
+    print_r(is_array($user));
 };
 if (!empty($_POST['phone'])) {
     $phone = $_POST['phone'];
@@ -64,8 +64,8 @@ class Users extends Model
             && $email === $user["email"]
             && $password === $user["password"]
         ) {
-         echo "OK";
-         exit();
+            echo "OK";
+            exit();
         };
     }
 }

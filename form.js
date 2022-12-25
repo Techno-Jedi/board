@@ -4,12 +4,16 @@
             let htmlDivElementForm = createMainDiv();
             let inputElement = createInputName();
             let textareaElement = createTextarea();
-            let inputPrice =  createInputPrice();
+            let inputPrice = createInputPrice();
             let imagesAndPhone = createImagesAndPhone();
             let img = createImg();
             let divElementPhone = createElementPhone();
             let loading = createLoading();
             let loadingAndSave = createLoadingAndSave();
+
+            app.Header.draw("");
+            app.Header2.draw("");
+
             htmlDivElementForm.append(
                 inputElement,
                 textareaElement,
@@ -22,6 +26,7 @@
 
         }
     }
+
     function createMainDiv() {
         let content = document.querySelector(".content");
         let divElementMain = document.createElement("div");
@@ -29,6 +34,7 @@
         content.append(divElementMain);
         return divElementMain;
     }
+
     function createInputName() {
         let divElement = document.createElement("div");
         let paragraphElement = document.createElement("p");
@@ -58,7 +64,8 @@
         htmlTextAreaElement.setAttribute("type", "text");
         return divElement;
     }
-    function createInputPrice(){
+
+    function createInputPrice() {
         let divElement = document.createElement("div");
         let paragraphElement = document.createElement("p");
         divElement.append(paragraphElement);
@@ -72,17 +79,19 @@
         divElement.append(htmlInputElement)
         return divElement;
     }
+
     function createImagesAndPhone() {
         let imagesAndPhone = document.createElement("div");
         imagesAndPhone.classList.add("imagesAndPhone");
         return imagesAndPhone;
     }
 
-    function createImg(){
+    function createImg() {
         let img = document.createElement("div");
         img.classList.add("image");
         return img;
     }
+
     function createElementPhone() {
         let divElementPhone = document.createElement("div");
         divElementPhone.classList.add("phone")
@@ -91,7 +100,8 @@
         divElementPhone.append(elementP);
         return divElementPhone
     }
-    function createLoading(){
+
+    function createLoading() {
         let divElementPhone = document.createElement("div");
         divElementPhone.classList.add("loading")
         let elementP = document.createElement("p")
@@ -99,7 +109,8 @@
         divElementPhone.append(elementP);
         return divElementPhone
     }
-    function createLoadingAndSave(){
+
+    function createLoadingAndSave() {
         let divElement = document.createElement("div");
         divElement.classList.add("loadingAndSave");
         return divElement;

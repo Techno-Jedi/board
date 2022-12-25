@@ -1,33 +1,32 @@
 (function (app) {
-    app.PageAds = {
+    app.PageMyAds = {
         draw: function () {
-            let header = document.querySelector(".header")
             app.Header.draw("");
             app.Header2.draw("");
-
-
             let divElementMain = createMainDiv();
             let divElement = createdivElement();
             let priceDiv = createPriceDiv();
             let imagesAndPhone = createImagesAndPhone();
             let img = createImg();
-            let divElementPhone = createElementPhone();
+
+            let divChange = createChange();
+            let deleteAndChange = createDeleteAndChange();
+            let divElementСhange = createElementСhange();
+            let divElementDelete = createElementDelete();
             let descriptionDivAndSalesman = createDescriptionDivAndSalesman();
             let descriptionDiv = createDescriptionDiv();
-            let divSalesman = createDivSalesman();
-            divElementMain.append(divElement);
-            divElement.append(imagesAndPhone,priceDiv, descriptionDivAndSalesman);
-            imagesAndPhone.append(img, divElementPhone);
-            descriptionDivAndSalesman.append(descriptionDiv, divSalesman);
 
-            divElementPhone.addEventListener("click", function () {
-                document.querySelector(".phone p").innerHTML = "+7 XXX XXX XXXX";
-                setTimeout(() =>  document.querySelector(".phone p").innerHTML = "Показать телефон", 5000)
-            })
+            divElementMain.append(divElement);
+            divElement.append(imagesAndPhone,descriptionDivAndSalesman, divChange);
+
+            divChange.append(deleteAndChange, priceDiv)
+
+            deleteAndChange.append(divElementСhange, divElementDelete,)
+            imagesAndPhone.append(img);
+            descriptionDivAndSalesman.append(descriptionDiv, );
 
         }
     }
-
 
     function createMainDiv() {
         let content = document.querySelector(".content");
@@ -55,11 +54,32 @@
         return img;
     }
 
-    function createElementPhone() {
+
+    function createChange() {
+        let change = document.createElement("div");
+        change.classList.add("priceAndChange");
+        return change;
+    }
+    function createDeleteAndChange() {
+        let change = document.createElement("div");
+        change.classList.add("DeleteAndChange");
+        return change;
+    }
+
+
+    function createElementСhange() {
         let divElementPhone = document.createElement("div");
-        divElementPhone.classList.add("phone")
+        divElementPhone.classList.add("change")
         let elementP = document.createElement("p")
-        elementP.append(document.createTextNode("Показать телефон"));
+        elementP.append(document.createTextNode("Изменить"));
+        divElementPhone.append(elementP);
+        return divElementPhone
+    }
+    function createElementDelete() {
+        let divElementPhone = document.createElement("div");
+        divElementPhone.classList.add("delete")
+        let elementP = document.createElement("p")
+        elementP.append(document.createTextNode("Удалить"));
         divElementPhone.append(elementP);
         return divElementPhone
     }
@@ -90,16 +110,5 @@
         priceDiv.classList.add("price")
         return priceDiv;
     }
-
-    function createDivSalesman() {
-        let divSalesman = document.createElement("div");
-        divSalesman.classList.add("salesman")
-        let salesmanP = document.createElement("p")
-        salesmanP.classList.add("surname")
-        divSalesman.append(salesmanP);
-        salesmanP.append(document.createTextNode("Продавец:Гошан ГГ"));
-        return divSalesman;
-    }
-
 
 })(AdsBoard);

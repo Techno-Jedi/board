@@ -187,6 +187,45 @@ body {
 .phone p{
     margin: auto;
 }
+.priceAndChange{
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    margin-left: auto;
+}
+.DeleteAndChange{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: auto;
+
+}
+.change{
+    display: flex;
+    position: relative;
+    height: 3rem;
+    width: 13vw;
+    background-color: #0EA5E9;
+    box-sizing: border-box;
+}
+
+.change p{
+    margin: auto;
+    font-size: 2vw;
+}
+
+.delete{
+    display: flex;
+    height: 3rem;
+    width: 13vw;
+    margin-left: 1vw;
+    background-color: #0EA5E9;
+
+}
+.delete p{
+    margin: auto;
+    font-size: 2vw;
+}
 .description{
     display: flex;
     flex-direction: column;
@@ -199,14 +238,14 @@ body {
     margin: 0;
 }
 .price{
-    display: flex;
-    flex-flow: row;
-    position: relative;
-    box-sizing: border-box;
-    height: 2rem;
+    /*display: flex;*/
+    /*flex-flow: row;*/
+    /*position: relative;*/
+    /*box-sizing: border-box;*/
+    /*height: 2rem;*/
     order: 1;
     margin-left: auto;
-    left: 0;
+    /*left: 0;*/
     font-size: 1.5rem;
     white-space: nowrap;
 }
@@ -231,7 +270,7 @@ body {
     flex-direction: row;
     position: relative;
 }
-@media  (max-width: 500px) {
+@media  (max-width: 600px) {
     .boardAds {
         display: flex;
         flex-direction: column;
@@ -257,13 +296,13 @@ body {
         border: 1px solid black;
     }
     .price{
-        display: flex;
-        flex-flow: row;
-        position: relative;
-        box-sizing: border-box;
-        height: 2rem;
-        font-size: 1.5rem;
-        white-space: nowrap;
+        /*display: flex;*/
+        /*flex-flow: row;*/
+        /*position: relative;*/
+        /*box-sizing: border-box;*/
+        /*height: 2rem;*/
+        /*font-size: 1.5rem;*/
+        /*white-space: nowrap;*/
         order: 0;
         margin-left: 1rem;
     }
@@ -296,6 +335,128 @@ body {
         position: relative;
         margin: auto;
     }
+    .priceAndChange {
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 15rem;
+    }
+    .DeleteAndChange {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-top: 1rem;
+        width: 15rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .change{
+        display: flex;
+        position: relative;
+        height: 3rem;
+        width: 100%;
+        background-color: #0EA5E9;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .change p{
+        margin: auto;
+        font-size: 5vw;
+    }
+    .delete{
+        display: flex;
+        height: 3rem;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #0EA5E9;
+    }
+    .delete p{
+        margin: auto;
+        font-size: 5vw;
+    }
+    .burger {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index:1;
+        overflow: hidden;
+        width: 3rem;
+        height: 2rem;
+        padding: 3px;
+        border: none;
+        font-size: 0;
+        color: transparent;
+        top: 20%;
+     }
+    .burger span {
+        width: 30px;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #222222;
+        transition: all 0.5s;
+    }
+    .burger span:nth-of-type(2) {
+        top: calc(50% - 5px);
+    }
+    .burger span:nth-of-type(3) {
+        top: calc(50% + 5px);
+    }
+    .menu{
+        position: fixed;
+        top: 0;
+        right: 0;
+        /*width: 100%;*/
+        padding: 1rem;
+        /*background-color: #0EA5E9;*/
+        transform: translateX(100%);
+        transition: transform 0.5s;
+        text-decoration: none;
+    }
+    .menu.active {
+        display: block;
+        transform: translateX(0);
+        background-color: #0EA5E9;
+        z-index: 1;
+    }
+    .menu.active ul {
+     display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        padding-left: 0;
+        padding-top: 1rem;
+    }
+    .menu.active li {
+        list-style-type: none;
+        background-color: #0EA5E9;
+        color: white;
+    }
+    .menu li a:hover {
+        text-decoration: underline;
+    }
+
+}
+.menu ul {
+    display: inline;
+}
+.menu li {
+    display: inline;
+    padding-right: 1rem;
+}
+.menu li a{
+    display: inline;
+    padding-right: 1rem;
+    color: white;
+    text-decoration: none;
+}
+.menu li a:hover {
+    text-decoration: underline;
 }
 .ads{
     flex-grow: 1;
@@ -314,7 +475,7 @@ body {
     flex-direction:column;
     height: 4rem;
     margin: 3rem 0 0 0;
- }
+}
 p{
     margin: 0;
     font-style: normal;

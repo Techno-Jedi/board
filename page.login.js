@@ -1,6 +1,7 @@
 (function (app) {
     app.PageLogin = {
         draw: function () {
+            app.Header.draw("");
             let divElementMain = createMainDiv();
             let textLogin = createTextLogin();
             let inputElementEmail = createInputEmail();
@@ -9,6 +10,7 @@
             let textPassword = createTextPassword();
             let exitButton = createButtonExit();
             let registerButton = createButtonRegistr();
+
             divElementMain.append(
                 textLogin,
                 inputElementEmail,
