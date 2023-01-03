@@ -250,12 +250,8 @@ body {
     white-space: nowrap;
 }
 .salesman{
-    display: flex;
-    flex-flow: column;
-    position: relative;
-    box-sizing: border-box;
-    margin: 0.3rem 0 0 1rem;
-    text-align: center;
+     margin: 0.3rem 0 0 1rem;
+
 }
 .surname{
     display: flex;
@@ -466,7 +462,6 @@ body {
 }
 .my_ads{
     position: relative;
-
     margin-right: 2rem;
     margin-left: 2rem;
 }

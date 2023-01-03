@@ -11,8 +11,8 @@
             let loading = createLoading();
             let loadingAndSave = createLoadingAndSave();
 
-            app.Header.draw("");
-            app.Header2.draw("");
+            // app.Header.draw("");
+            // app.Header2.draw("");
 
             htmlDivElementForm.append(
                 inputElement,
@@ -22,8 +22,14 @@
                 loadingAndSave
             );
             imagesAndPhone.append(img, divElementPhone);
-            loadingAndSave.append(imagesAndPhone, loading)
+            loadingAndSave.append(imagesAndPhone, loading);
 
+            let buttunLoading = document.querySelector(".loading");
+            buttunLoading.addEventListener("click", function () {
+                return alert("hi");
+            });
+            let buttunSave = document.querySelector(".phone");
+            buttunSave.addEventListener("click", goToUploadForm);
         }
     }
 
@@ -75,7 +81,7 @@
         let htmlInputElement = document.createElement("input");
         htmlInputElement.classList.add("input_price");
         htmlInputElement.setAttribute("name", "price");
-        htmlInputElement.setAttribute("type", "text");
+        htmlInputElement.setAttribute("type", "number");
         divElement.append(htmlInputElement)
         return divElement;
     }
@@ -115,4 +121,83 @@
         divElement.classList.add("loadingAndSave");
         return divElement;
     }
+
+    function goToUploadForm(event) {
+        event.preventDefault();
+        let formData = new FormData();
+        let name = document.querySelector(".input_form").value
+        let description = document.querySelector(".textarea").value
+        let price = document.querySelector(".input_price").value
+        if (name !== "" && description !== "" && price !== "") {
+            formData.append('title', name);
+            formData.append('textarea', description);
+            formData.append('price', price);
+            fetch("uploadForm.php", {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(function (response) {
+                        document.querySelector(".header").innerHTML = "";
+                        document.querySelector(".content").innerHTML = "";
+                        AdsBoard.PageAds.draw()
+                        for (let i = 0; i < response.length; i++) {
+                            function createMainDiv() {
+                                let content = document.querySelector(".content");
+                                let divElementMains = document.createElement("div");
+                                divElementMains.classList.add("boardAds")
+                                content.append(divElementMains);
+                                let divElementMain = document.createElement("div");
+                                divElementMain.classList.add("imageDescriptionPrice")
+                                divElementMains.append(divElementMain);
+                                let imagesAndPhone = document.createElement("div");
+                                imagesAndPhone.classList.add("imagesAndPhone");
+                                let img = document.createElement("div");
+                                img.classList.add("image");
+                                imagesAndPhone.append(img)
+                                let divElementPhone = document.createElement("div");
+                                divElementPhone.classList.add("phone")
+                                let elementP = document.createElement("p")
+                                elementP.append(document.createTextNode("Показать телефон"));
+                                divElementPhone.append(elementP);
+                                imagesAndPhone.append(divElementPhone);
+                                let descriptionDivAndSalesman = document.createElement("div");
+                                descriptionDivAndSalesman.classList.add("description-salesman");
+                                let descriptionDiv = document.createElement("div");
+                                let descriptionP = document.createElement("p");
+                                descriptionDiv.append(descriptionP)
+                                descriptionP.innerHTML = response[i].description
+                                descriptionDiv.classList.add("description");
+                                descriptionDivAndSalesman.append(descriptionDiv);
+                                let priceDiv = document.createElement("div");
+                                priceDiv.classList.add("price");
+                                priceDiv.innerHTML = response[i].price
+                                descriptionDivAndSalesman.append(priceDiv);
+                                let divSalesman = document.createElement("div");
+                                divSalesman.classList.add("salesman")
+                                divSalesman.append(document.createTextNode("Продавец:"))
+                                let salesmanP = document.createElement("p")
+                                salesmanP.classList.add("surname");
+                                salesmanP.innerHTML = response[i].name;
+                                divSalesman.append(salesmanP);
+                                salesmanP.append(document.createTextNode(""));
+                                descriptionDivAndSalesman.append(divSalesman)
+                                divElementMain.append(imagesAndPhone, priceDiv, descriptionDivAndSalesman)
+                                divElementPhone.addEventListener("click", function () {
+                                    document.querySelector(".phone p").innerHTML = "+7 XXX XXX XXXX";
+                                    setTimeout(() => document.querySelector(".phone p").innerHTML = "Показать телефон", 5000)
+                                })
+                                return divElementMain;
+                            }
+
+                            createMainDiv();
+                        }
+                    }
+                )
+        } else {
+            alert("Не все поля заполнены")
+            return AdsBoard.FormPage.draw();
+        }
+    }
+
 })(AdsBoard)

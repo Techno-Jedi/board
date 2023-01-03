@@ -2,6 +2,7 @@
     app.PageLogin = {
         draw: function () {
             app.Header.draw("");
+
             let divElementMain = createMainDiv();
             let textLogin = createTextLogin();
             let inputElementEmail = createInputEmail();
@@ -88,6 +89,7 @@
 
     function goToRegister() {
         document.querySelector(".content").innerHTML = "";
+        document.querySelector(".header").innerHTML = "";
         AdsBoard.PageRegister.draw();
     }
 
@@ -114,6 +116,7 @@
         } else {
             alert("Не все поля заполнены");
             document.querySelector(".content").innerHTML = "";
+            document.querySelector(".header").innerHTML = "";
             return AdsBoard.PageLogin.draw();
         }
 

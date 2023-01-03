@@ -13,10 +13,17 @@
             let header = document.querySelector(".header");
             let headerRight = createHeaderRight();
             let nav = createNav();
+
             header.append(
                 nav,
                 headerRight
             );
+            let ribbonHeader = document.querySelector(".ribbon");
+            ribbonHeader.addEventListener("click", ribbon);
+
+            let adsHeader = document.querySelector(".MyAds");
+            adsHeader.addEventListener("click", ads);
+
             let menuBtn = document.querySelector('.burger');
             let menu = document.querySelector('.menu');
             menuBtn.addEventListener('click', function () {
@@ -25,7 +32,17 @@
             let exitId = document.querySelector('#exit');
             exitId.addEventListener('click', exit)
 
-            function exit() {
+            function ads(){
+                document.querySelector(".content").innerHTML = "";
+                document.querySelector(".header").innerHTML = "";
+                return AdsBoard.PageMyAds.draw();
+            }
+            function ribbon(){
+                document.querySelector(".content").innerHTML = "";
+                document.querySelector(".header").innerHTML = "";
+                return AdsBoard.PageAds.draw();
+            }
+            function exit(){
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML = "";
                 return AdsBoard.PageLogin.draw();
@@ -70,6 +87,7 @@
         let aElement = document.createElement("a");
         aElement.append(document.createTextNode("Лента"));
         aElement.setAttribute("href", "#");
+        aElement.classList.add("ribbon")
         liElement.append(aElement);
         ulElement.append(liElement);
 
@@ -77,6 +95,7 @@
         let aElement2 = document.createElement("a");
         aElement2.append(document.createTextNode("Мои объявления"));
         aElement2.setAttribute("href", "#");
+        aElement2.classList.add("MyAds")
         liElement2.append(aElement2);
         ulElement.append(liElement2);
 
@@ -85,6 +104,7 @@
         let aElement3 = document.createElement("a");
         aElement3.append(document.createTextNode("Добавить"));
         aElement3.setAttribute("href", "#");
+        aElement3.classList.add("add")
         liElement3.append(aElement3);
         ulElement.append(liElement3);
 
@@ -103,22 +123,3 @@
     }
 
 })(AdsBoard);
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     // AdsBoard.Header.draw();
-//     // AdsBoard.PageLogin.draw();
-//     // AdsBoard.PageAds.draw();
-//     AdsBoard.PageMyAds.draw();
-//     // AdsBoard.FormPage.draw();
-// })
-
-// let exit = document.getElementById('#exit');
-//
-// if(exit){
-//
-//     exit.addEventListener("click",function () {
-//         return console.log("sdj");
-//     })
-// }else {
-//     console.log("hi")
-// }

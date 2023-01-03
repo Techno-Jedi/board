@@ -8,22 +8,34 @@
             let priceDiv = createPriceDiv();
             let imagesAndPhone = createImagesAndPhone();
             let img = createImg();
-
             let divChange = createChange();
             let deleteAndChange = createDeleteAndChange();
             let divElementСhange = createElementСhange();
             let divElementDelete = createElementDelete();
             let descriptionDivAndSalesman = createDescriptionDivAndSalesman();
             let descriptionDiv = createDescriptionDiv();
-
             divElementMain.append(divElement);
-            divElement.append(imagesAndPhone,descriptionDivAndSalesman, divChange);
-
+            divElement.append(imagesAndPhone, descriptionDivAndSalesman, divChange);
             divChange.append(deleteAndChange, priceDiv)
-
             deleteAndChange.append(divElementСhange, divElementDelete,)
             imagesAndPhone.append(img);
-            descriptionDivAndSalesman.append(descriptionDiv, );
+            descriptionDivAndSalesman.append(descriptionDiv);
+
+            let changeForm = document.querySelector(".change");
+            let deleteForm = document.querySelector(".delete");
+            changeForm.addEventListener("click", change);
+            deleteForm.addEventListener("click", deletes);
+            function change(){
+                alert("hi");
+            }
+            function deletes(event){
+                event.preventDefault();
+                fetch('uploadForm.php' + id, {
+                    method: 'DELETE',
+                })
+                    .then(res => res.json())
+                    .then(res => console.log(res))
+            }
 
         }
     }
@@ -54,18 +66,17 @@
         return img;
     }
 
-
     function createChange() {
         let change = document.createElement("div");
         change.classList.add("priceAndChange");
         return change;
     }
+
     function createDeleteAndChange() {
         let change = document.createElement("div");
         change.classList.add("DeleteAndChange");
         return change;
     }
-
 
     function createElementСhange() {
         let divElementPhone = document.createElement("div");
@@ -75,6 +86,7 @@
         divElementPhone.append(elementP);
         return divElementPhone
     }
+
     function createElementDelete() {
         let divElementPhone = document.createElement("div");
         divElementPhone.classList.add("delete")

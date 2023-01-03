@@ -1,7 +1,7 @@
 (function (app) {
     app.PageAds = {
         draw: function () {
-            let header = document.querySelector(".header")
+            document.querySelector(".header").innerHTML = "";
             app.Header.draw("");
             app.Header2.draw("");
 
@@ -94,10 +94,12 @@
     function createDivSalesman() {
         let divSalesman = document.createElement("div");
         divSalesman.classList.add("salesman")
+        divSalesman.append(document.createTextNode("Продавец:"))
         let salesmanP = document.createElement("p")
         salesmanP.classList.add("surname")
         divSalesman.append(salesmanP);
-        salesmanP.append(document.createTextNode("Продавец:Гошан ГГ"));
+        salesmanP.append(document.createTextNode("Иванов И.И"));
+
         return divSalesman;
     }
 
