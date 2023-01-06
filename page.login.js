@@ -104,17 +104,15 @@
             fetch("upload.php", {
                 method: 'POST',
                 body: formData,
-            }).then(response => response.text())
+            }).then(response => response.json())
                 .then(function (response) {
-                    if (response === "OK") {
-                        document.querySelector(".content").innerHTML = ""
-                        return AdsBoard.PageAds.draw();
-                    } else {
-                        alert("Пароль не верный")
-                    }
+                    document.querySelector(".content").innerHTML = "";
+                    document.querySelector(".header").innerHTML = "";
+                    console.log("user_id = ", response);
+                    return AdsBoard.PageMyAds.draw();
                 })
         } else {
-            alert("Не все поля заполнены");
+            alert("Не все поля заполнены или пароль не верный");
             document.querySelector(".content").innerHTML = "";
             document.querySelector(".header").innerHTML = "";
             return AdsBoard.PageLogin.draw();

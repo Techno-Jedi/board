@@ -11,8 +11,8 @@
             let loading = createLoading();
             let loadingAndSave = createLoadingAndSave();
 
-            // app.Header.draw("");
-            // app.Header2.draw("");
+            app.Header.draw("");
+            app.Header2.draw("");
 
             htmlDivElementForm.append(
                 inputElement,
@@ -140,7 +140,8 @@
                 .then(function (response) {
                         document.querySelector(".header").innerHTML = "";
                         document.querySelector(".content").innerHTML = "";
-                        AdsBoard.PageAds.draw()
+                        AdsBoard.PageAds.draw();
+                    console.log(response)
                         for (let i = 0; i < response.length; i++) {
                             function createMainDiv() {
                                 let content = document.querySelector(".content");
@@ -196,6 +197,8 @@
                 )
         } else {
             alert("Не все поля заполнены")
+            document.querySelector(".header").innerHTML = "";
+            document.querySelector(".content").innerHTML = "";
             return AdsBoard.FormPage.draw();
         }
     }

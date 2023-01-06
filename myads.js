@@ -25,16 +25,19 @@
             let deleteForm = document.querySelector(".delete");
             changeForm.addEventListener("click", change);
             deleteForm.addEventListener("click", deletes);
-            function change(){
+
+            function change() {
                 alert("hi");
             }
-            function deletes(event){
-                event.preventDefault();
-                fetch('uploadForm.php' + id, {
-                    method: 'DELETE',
-                })
-                    .then(res => res.json())
-                    .then(res => console.log(res))
+
+            async function deletes(id) {
+                let response = fetch(`uploadForm.php/${id}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                if (data.status === true) {
+                    await AdsBoard.PageAds.draw();
+                }
             }
 
         }
