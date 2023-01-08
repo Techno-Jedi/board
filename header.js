@@ -40,10 +40,83 @@
                 return AdsBoard.FormPage.draw();
             }
 
-            function ads() {
+            function ads(a) {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML = "";
-                return AdsBoard.PageMyAds.draw();
+                return AdsBoard.PageMyAds.draw(a);
+                // fetch("uploadForm.php", {
+                //     method: 'GET',
+                //
+                // })
+                //     .then(response => response.json())
+                //     .then(function (response) {
+                //             document.querySelector(".header").innerHTML = "";
+                //             document.querySelector(".content").innerHTML = "";
+                //             AdsBoard.PageMyAds.draw();
+                //             console.log(response)
+                //             for (let i = 0; i < response.length; i++) {
+                //                 function createMainDiv() {
+                //                     let content = document.querySelector(".content");
+                //                     let divElementMains = document.createElement("div");
+                //                     divElementMains.classList.add("boardAds");
+                //                     content.append(divElementMains);
+                //                     let divElementMain = document.createElement("div");
+                //                     divElementMain.classList.add("imageDescriptionPrice")
+                //                     divElementMains.append(divElementMain);
+                //                     let imagesAndPhone = document.createElement("div");
+                //                     imagesAndPhone.classList.add("imagesAndPhone");
+                //                     let img = document.createElement("div");
+                //                     img.classList.add("image");
+                //                     imagesAndPhone.append(img)
+                //
+                //                     let descriptionDivAndSalesman = document.createElement("div");
+                //                     descriptionDivAndSalesman.classList.add("description-salesman");
+                //                     let descriptionDiv = document.createElement("div");
+                //                     let descriptionP = document.createElement("p");
+                //                     descriptionDiv.append(descriptionP);
+                //                     descriptionP.innerHTML = response[i].description;
+                //                     descriptionDiv.classList.add("description");
+                //                     descriptionDivAndSalesman.append(descriptionDiv);
+                //
+                //                     let changePriceAndChange = document.createElement("div");
+                //                     changePriceAndChange.classList.add("priceAndChange");
+                //                     divElementMain.append(changePriceAndChange);
+                //
+                //                     let change = document.createElement("div");
+                //                     change.classList.add("DeleteAndChange");
+                //
+                //                     let divElementPhone = document.createElement("div");
+                //
+                //                     divElementPhone.classList.add("change");
+                //
+                //                     let elementP = document.createElement("p");
+                //                     elementP.append(document.createTextNode("Изменить"));
+                //                     divElementPhone.append(elementP);
+                //                     change.append(divElementPhone);
+                //                     changePriceAndChange.append(change);
+                //
+                //                     let divElement = document.createElement("div");
+                //                     divElement.classList.add("delete")
+                //                     let paragraphElement = document.createElement("p")
+                //                     paragraphElement.append(document.createTextNode("Удалить"));
+                //                     divElement.append(paragraphElement);
+                //                     change.append(divElement)
+                //
+                //                     let priceDiv = document.createElement("div");
+                //                     priceDiv.append(document.createTextNode(""));
+                //                     priceDiv.classList.add("price");
+                //                     priceDiv.innerHTML = response[i].price
+                //                     changePriceAndChange.append(priceDiv);
+                //
+                //                     divElementMain.append(imagesAndPhone, descriptionDivAndSalesman, changePriceAndChange)
+                //                     return divElementMain;
+                //                 }
+                //
+                //                 console.log(document.querySelector(".change"), response[i].id)
+                //                 createMainDiv();
+                //             }
+                //         }
+                //     )
             }
 
             function ribbon() {
@@ -74,7 +147,13 @@
                                     imagesAndPhone.append(img)
                                     let divElementPhone = document.createElement("div");
                                     divElementPhone.classList.add("phone")
-                                    let elementP = document.createElement("p")
+                                    let elementP = document.createElement("p");
+                                    elementP.onclick = function (event) {
+                                        let target = event.target;
+                                        if (target.tagName != 'P') return;
+                                        elementP.innerHTML = "+7 XXX XXX XXXX"
+                                        setTimeout(() => elementP.innerHTML = "Показать телефон", 5000)
+                                    }
                                     elementP.append(document.createTextNode("Показать телефон"));
                                     divElementPhone.append(elementP);
                                     imagesAndPhone.append(divElementPhone);
@@ -100,10 +179,6 @@
                                     salesmanP.append(document.createTextNode(""));
                                     descriptionDivAndSalesman.append(divSalesman)
                                     divElementMain.append(imagesAndPhone, priceDiv, descriptionDivAndSalesman)
-                                    divElementPhone.addEventListener("click", function () {
-                                        document.querySelector(".phone p").innerHTML = "+7 XXX XXX XXXX";
-                                        setTimeout(() => document.querySelector(".phone p").innerHTML = "Показать телефон", 5000)
-                                    })
                                     return divElementMain;
                                 }
 
@@ -165,7 +240,7 @@
         let liElement = document.createElement("li");
         let aElement = document.createElement("a");
         aElement.append(document.createTextNode("Лента"));
-        // aElement.setAttribute("href", "/1");
+        // aElement.setAttribute("href", "1");
         aElement.classList.add("ribbon")
         liElement.append(aElement);
         ulElement.append(liElement);

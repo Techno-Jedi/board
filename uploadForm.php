@@ -1,15 +1,17 @@
 <?php
 session_start();
-$id = $_SESSION["id"];
-
+// $method = $_SERVER['REQUEST_METHOD'];
+// print_r($object = json_decode($_REQUEST['id'], true));
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $user = new Users();
     $showUsers = $user->getUser();
+
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = new Users();
   $user->createUser($_REQUEST["title"],$_REQUEST["textarea"], $_REQUEST["price"]);
   $user->getUser();
+
 
 } else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
   $user = new Users();
@@ -18,7 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 } else if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
   $user = new Users();
-  $user->deleteUser($_REQUEST["id"]);
+  $id =  $_SESSION["id_form"];
+  $user->deleteUser($id);
+echo  $_SESSION["id_form"];
 }
 
 class Database
@@ -62,6 +66,7 @@ class Users extends Model
         while ($row[] = Database::fetch($query)) {
         $users = $row;
         };
+         $_SESSION["id_form"] = $users[0]["id"];
         print_r(json_encode($users));
 
     }

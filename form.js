@@ -10,10 +10,8 @@
             let divElementPhone = createElementPhone();
             let loading = createLoading();
             let loadingAndSave = createLoadingAndSave();
-
             app.Header.draw("");
             app.Header2.draw("");
-
             htmlDivElementForm.append(
                 inputElement,
                 textareaElement,
@@ -184,13 +182,8 @@
                                 salesmanP.append(document.createTextNode(""));
                                 descriptionDivAndSalesman.append(divSalesman)
                                 divElementMain.append(imagesAndPhone, priceDiv, descriptionDivAndSalesman)
-                                divElementPhone.addEventListener("click", function () {
-                                    document.querySelector(".phone p").innerHTML = "+7 XXX XXX XXXX";
-                                    setTimeout(() => document.querySelector(".phone p").innerHTML = "Показать телефон", 5000)
-                                })
                                 return divElementMain;
                             }
-
                             createMainDiv();
                         }
                     }
