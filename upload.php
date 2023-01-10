@@ -10,6 +10,7 @@ $password = $_REQUEST['password'];
 $phone = "";
 
 if (!empty($email && $password)) {
+
     $user = new Users();
     $user->getUser($email, $password);
     print_r(is_array($user));

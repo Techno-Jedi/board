@@ -1,6 +1,6 @@
 (function (app) {
     app.Header = {
-        draw: function (a) {
+        draw: function (id) {
             let header = document.querySelector(".header")
             let divElementMain = createMainDiv();
             header.append(
@@ -9,7 +9,7 @@
         }
     }
     app.Header2 = {
-        draw: function (a) {
+        draw: function (id) {
             let header = document.querySelector(".header");
             let headerRight = createHeaderRight();
             let nav = createNav();
@@ -40,83 +40,10 @@
                 return AdsBoard.FormPage.draw();
             }
 
-            function ads(a) {
+            function ads(id) {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML = "";
-                return AdsBoard.PageMyAds.draw(a);
-                // fetch("uploadForm.php", {
-                //     method: 'GET',
-                //
-                // })
-                //     .then(response => response.json())
-                //     .then(function (response) {
-                //             document.querySelector(".header").innerHTML = "";
-                //             document.querySelector(".content").innerHTML = "";
-                //             AdsBoard.PageMyAds.draw();
-                //             console.log(response)
-                //             for (let i = 0; i < response.length; i++) {
-                //                 function createMainDiv() {
-                //                     let content = document.querySelector(".content");
-                //                     let divElementMains = document.createElement("div");
-                //                     divElementMains.classList.add("boardAds");
-                //                     content.append(divElementMains);
-                //                     let divElementMain = document.createElement("div");
-                //                     divElementMain.classList.add("imageDescriptionPrice")
-                //                     divElementMains.append(divElementMain);
-                //                     let imagesAndPhone = document.createElement("div");
-                //                     imagesAndPhone.classList.add("imagesAndPhone");
-                //                     let img = document.createElement("div");
-                //                     img.classList.add("image");
-                //                     imagesAndPhone.append(img)
-                //
-                //                     let descriptionDivAndSalesman = document.createElement("div");
-                //                     descriptionDivAndSalesman.classList.add("description-salesman");
-                //                     let descriptionDiv = document.createElement("div");
-                //                     let descriptionP = document.createElement("p");
-                //                     descriptionDiv.append(descriptionP);
-                //                     descriptionP.innerHTML = response[i].description;
-                //                     descriptionDiv.classList.add("description");
-                //                     descriptionDivAndSalesman.append(descriptionDiv);
-                //
-                //                     let changePriceAndChange = document.createElement("div");
-                //                     changePriceAndChange.classList.add("priceAndChange");
-                //                     divElementMain.append(changePriceAndChange);
-                //
-                //                     let change = document.createElement("div");
-                //                     change.classList.add("DeleteAndChange");
-                //
-                //                     let divElementPhone = document.createElement("div");
-                //
-                //                     divElementPhone.classList.add("change");
-                //
-                //                     let elementP = document.createElement("p");
-                //                     elementP.append(document.createTextNode("Изменить"));
-                //                     divElementPhone.append(elementP);
-                //                     change.append(divElementPhone);
-                //                     changePriceAndChange.append(change);
-                //
-                //                     let divElement = document.createElement("div");
-                //                     divElement.classList.add("delete")
-                //                     let paragraphElement = document.createElement("p")
-                //                     paragraphElement.append(document.createTextNode("Удалить"));
-                //                     divElement.append(paragraphElement);
-                //                     change.append(divElement)
-                //
-                //                     let priceDiv = document.createElement("div");
-                //                     priceDiv.append(document.createTextNode(""));
-                //                     priceDiv.classList.add("price");
-                //                     priceDiv.innerHTML = response[i].price
-                //                     changePriceAndChange.append(priceDiv);
-                //
-                //                     divElementMain.append(imagesAndPhone, descriptionDivAndSalesman, changePriceAndChange)
-                //                     return divElementMain;
-                //                 }
-                //
-                //                 console.log(document.querySelector(".change"), response[i].id)
-                //                 createMainDiv();
-                //             }
-                //         }
-                //     )
+                return AdsBoard.PageMyAds.draw(id);
             }
 
             function ribbon() {
@@ -248,7 +175,7 @@
         let liElement2 = document.createElement("li");
         let aElement2 = document.createElement("a");
         aElement2.append(document.createTextNode("Мои объявления"));
-        // aElement2.setAttribute("href", "#");
+        // aElement2.setAttribute("href", "upload.php?id=");
         aElement2.classList.add("MyAds")
         liElement2.append(aElement2);
         ulElement.append(liElement2);
@@ -275,5 +202,4 @@
         navElement.setAttribute("name", "menu");
         return navElement;
     }
-
 })(AdsBoard);

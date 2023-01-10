@@ -1,30 +1,28 @@
 <?php
 session_start();
-// $method = $_SERVER['REQUEST_METHOD'];
-// print_r($object = json_decode($_REQUEST['id'], true));
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $user = new Users();
     $showUsers = $user->getUser();
-
-
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = new Users();
   $user->createUser($_REQUEST["title"],$_REQUEST["textarea"], $_REQUEST["price"]);
   $user->getUser();
-
-
 } else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+print_r($_POST["id"]);
   $user = new Users();
-  $data = ['id'=>$_REQUEST["id"], 'name'=>$_REQUEST["title"]];
+  $data = [$_REQUEST["id"], $_REQUEST["title"], $_REQUEST["textarea"], $_REQUEST["price"]];
   $user->updateUser($data);
 
 } else if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+  $json = file_get_contents('php://input');
+  $id = json_decode($json, JSON_BIGINT_AS_STRING);
+  print_r($id["id"]);
   $user = new Users();
-  $id =  $_SESSION["id_form"];
-  $user->deleteUser($id);
-echo  $_SESSION["id_form"];
+//    $user->getUser();
+//   $id =  $_SESSION["id_form"];
+  $user->deleteUser($id["id"]);
 }
-
 class Database
 {
     private static $connection_to_db;
@@ -66,14 +64,19 @@ class Users extends Model
         while ($row[] = Database::fetch($query)) {
         $users = $row;
         };
-         $_SESSION["id_form"] = $users[0]["id"];
+//         $_SESSION["id_form"] = $users[0]["id"];
         print_r(json_encode($users));
 
     }
 
     public function updateUser($data)
     {
-        $query = Database::query("UPDATE `forms` SET `name`= '" . $data['name'] . "' WHERE `id` = " . $data['id']);
+        $query = Database::query("UPDATE `forms` SET
+        `name`='" . $data['name'] . "',
+        `description`='" . $data['description'] . "',
+        `price` ='" . $data['price'] . "'
+         WHERE `forms` `id` = " . $data['id']);
+
     }
 
     public function deleteUser($id)
