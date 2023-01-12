@@ -13,7 +13,6 @@
             let header = document.querySelector(".header");
             let headerRight = createHeaderRight();
             let nav = createNav();
-
             header.append(
                 nav,
                 headerRight
@@ -175,7 +174,7 @@
         let liElement2 = document.createElement("li");
         let aElement2 = document.createElement("a");
         aElement2.append(document.createTextNode("Мои объявления"));
-        // aElement2.setAttribute("href", "upload.php?id=");
+        // aElement2.setAttribute("href", `upload.php?id=${id}`);
         aElement2.classList.add("MyAds")
         liElement2.append(aElement2);
         ulElement.append(liElement2);

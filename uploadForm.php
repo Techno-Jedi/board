@@ -5,22 +5,36 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $user = new Users();
     $showUsers = $user->getUser();
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
   $user = new Users();
   $user->createUser($_REQUEST["title"],$_REQUEST["textarea"], $_REQUEST["price"]);
   $user->getUser();
 } else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-print_r($_POST["id"]);
-  $user = new Users();
-  $data = [$_REQUEST["id"], $_REQUEST["title"], $_REQUEST["textarea"], $_REQUEST["price"]];
-  $user->updateUser($data);
+
+//
+// // $json = file_get_contents('php://input');
+// //  $id = json_decode($json,true);
+// // print_r($id["id"]);
+// //
+// $description = $id["description"];
+// $price = $id["price"];
+// $id = $id["id"];
+// // print_r($_GET["id"]);
+//   $user = new Users();
+// //   print_r($_GET["id"]);
+// //   $data = [$_REQUEST["id"], $_REQUEST["title"], $_REQUEST["textarea"], $_REQUEST["price"]];
+//   $user->updateUser($_PUT);
+//     $user->createUser($description, $price, $id);
+//     $user->getUser();
+// print_r(json_encode($user));
+
+
 
 } else if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
   $json = file_get_contents('php://input');
   $id = json_decode($json, JSON_BIGINT_AS_STRING);
   print_r($id["id"]);
   $user = new Users();
-//    $user->getUser();
-//   $id =  $_SESSION["id_form"];
   $user->deleteUser($id["id"]);
 }
 class Database
@@ -64,18 +78,12 @@ class Users extends Model
         while ($row[] = Database::fetch($query)) {
         $users = $row;
         };
-//         $_SESSION["id_form"] = $users[0]["id"];
         print_r(json_encode($users));
-
     }
 
-    public function updateUser($data)
+    public function updateUser($description, $price, $id)
     {
-        $query = Database::query("UPDATE `forms` SET
-        `name`='" . $data['name'] . "',
-        `description`='" . $data['description'] . "',
-        `price` ='" . $data['price'] . "'
-         WHERE `forms` `id` = " . $data['id']);
+        $query = Database::query("UPDATE `forms` SET `description` = '$description',`price` = '$price' WHERE `forms`.`id` =  '$id'");
 
     }
 

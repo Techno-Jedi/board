@@ -5,16 +5,17 @@
             app.Header2.draw("");
             console.log(res)
             if (res) {
-                fetch("uploadForm.php?id =" + res, {
+                fetch(`uploadForm.php?id=${res}` , {
                     method: 'GET',
                 })
                     .then(response => response.json())
                     .then(function (response) {
+
                             document.querySelector(".header").innerHTML = "";
                             document.querySelector(".content").innerHTML = "";
                             app.Header.draw("");
                             app.Header2.draw("");
-                            // AdsBoard.PageMyAds.draw();
+                            AdsBoard.PageAds.draw(res);
                             console.log(response)
                             for (let i = 0; i < response.length; i++) {
                                 function createMainDiv() {
@@ -47,7 +48,7 @@
                                     divElementPhone.classList.add("change");
                                     let elementP = document.createElement("p");
                                     elementP.append(document.createTextNode("Изменить"));
-                                    // elementP.setAttribute("href", `uploadForm..php?id=${res}`);
+                                    elementP.setAttribute("href", `uploadForm.php?id=${response[i].id}`);
                                     elementP.setAttribute("dataset-test", response[i].id)
                                     elementP.onclick = function (event) {
                                         let target = event.target;
@@ -66,7 +67,7 @@
                                     divElement.classList.add("delete");
                                     let paragraphElement = document.createElement("p")
                                     paragraphElement.append(document.createTextNode("Удалить"));
-                                    paragraphElement.setAttribute("href", `upload.php?id=${res}`);
+                                    paragraphElement.setAttribute("href", `upload.php?id=${response[i].id}`);
                                     paragraphElement.setAttribute("dataset-test", response[i].id)
                                     paragraphElement.onclick = function (event) {
                                         let target = event.target;
@@ -74,7 +75,9 @@
                                         document.querySelector(".header").innerHTML = "";
                                         document.querySelector(".content").innerHTML = "";
                                         console.log("this response", response[i]);
+
                                         let id = response[i];
+                                        console.log("this response", JSON.stringify(id));
                                         function removePost() {
                                             fetch("uploadForm.php", {
                                                 method: 'DELETE',

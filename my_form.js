@@ -1,7 +1,7 @@
 (function (app) {
     app.MyFormPage = {
         draw: function (response) {
-            console.log(response.id)
+            console.log(response)
             let id = response.id;
             let price = response.price;
             let description = response.description;
@@ -33,6 +33,8 @@
             buttunLoading.addEventListener("click", function () {
                 return alert("hi");
             });
+            console.log(response.id)
+           let z =  response.id
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
         }
@@ -40,7 +42,7 @@
 
     function createMainDiv() {
         let content = document.querySelector(".content");
-        let divElementMain = document.createElement("div");
+        let divElementMain = document.createElement("form");
         divElementMain.classList.add("adsForm")
         content.append(divElementMain);
         return divElementMain;
@@ -49,8 +51,10 @@
         let htmlInputElement = document.createElement("input");
         htmlInputElement.setAttribute("name", "id");
         htmlInputElement.setAttribute("type", "hidden");
-        htmlInputElement.setAttribute("value", id);
-        // htmlInputElement.value += y;
+        htmlInputElement.id = "id"
+        // htmlInputElement.setAttribute("value", id);
+        htmlInputElement.classList.add(".id_hidden")
+        htmlInputElement.value += id;
         return htmlInputElement;
     }
 
@@ -96,9 +100,10 @@
         let htmlInputElement = document.createElement("input");
         htmlInputElement.classList.add("input_price");
         htmlInputElement.setAttribute("name", "price");
-        htmlInputElement.setAttribute("name", "price");
-        htmlInputElement.setAttribute("value", price);
+        // htmlInputElement.setAttribute("value", price);
+        htmlInputElement.value += price;
         divElement.append(htmlInputElement)
+
         return divElement;
     }
 
@@ -141,24 +146,27 @@
     function goToUploadForm(event) {
         event.preventDefault();
         let formData = new FormData();
+        let id = document.querySelector("#id").value;
         let name = document.querySelector(".input_form").value
         let description = document.querySelector(".textarea").value
         let price = document.querySelector(".input_price").value
         if (name !== "" && description !== "" && price !== "") {
+            formData.append('id', id);
             formData.append('title', name);
             formData.append('textarea', description);
             formData.append('price', price);
-            console.log(formData)
-            fetch("uploadForm.php", {
-                method: 'PUT',
+            fetch("put.php", {
+                method: 'POST',
                 body: formData,
             })
                 .then(response => response.json())
                 .then(function (response) {
-                        document.querySelector(".header").innerHTML = "";
-                        document.querySelector(".content").innerHTML = "";
-                        AdsBoard.PageAds.draw();
-                        console.log(response)
+                    console.log("hyhyh")
+                    document.querySelector(".header").innerHTML = "";
+                    document.querySelector(".content").innerHTML = "";
+                    alert("Данные обновлены");
+                    AdsBoard.FormPage.draw();
+                    console.log("PageAds",response)
                         for (let i = 0; i < response.length; i++) {
                             function createMainDiv() {
                                 let content = document.querySelector(".content");

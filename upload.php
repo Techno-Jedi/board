@@ -67,6 +67,8 @@ class Users extends Model
             && $password === $user["password"]
         ) {
             print_r(json_encode($_SESSION["id"] = $user["id"]));
+        }else{
+        echo "ok";
         }
     }
 }
