@@ -1,14 +1,8 @@
 <?php
-// $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-// $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_EMAIL); // поменять фильтр пароля
-// // $password = md5($password . "******");
-// $phone = ""; // поменять фильтр телефона
 session_start();
-
 $email = $_REQUEST['email'];
 $password = $_REQUEST['password'];
 $phone = "";
-
 if (!empty($email && $password)) {
 
     $user = new Users();
@@ -67,8 +61,8 @@ class Users extends Model
             && $password === $user["password"]
         ) {
             print_r(json_encode($_SESSION["id"] = $user["id"]));
-        }else{
-        echo "ok";
+        } else {
+            echo "ok";
         }
     }
 }

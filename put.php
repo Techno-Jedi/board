@@ -1,8 +1,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-print_r($_POST["id"]);
-  $user = new Users();
-  $user->createUser($_POST["title"],$_POST["textarea"],$_POST["price"],$_POST["id"],);
+    print_r($_POST["id"]);
+    $user = new Users();
+    $user->createUser($_POST["title"], $_POST["textarea"], $_POST["price"], $_POST["id"], );
 
 };
 class Database
@@ -34,18 +34,18 @@ class Model
 
 class Users extends Model
 {
-    public function createUser($name, $description, $price,$id)
+    public function createUser($name, $description, $price, $id)
     {
         $query = Database::query("UPDATE `forms` SET `name` = '$name',`description` = '$description',`price` = '$price' WHERE `forms`.`id` =  '$id'");
     }
-        public function getUser()
-        {
-            $query = Database::query("SELECT * FROM `forms` ");
-            //         $user = Database::fetch($query);
-            $users;
-            while ($row[] = Database::fetch($query)) {
+    public function getUser()
+    {
+        $query = Database::query("SELECT * FROM `forms` ");
+        //         $user = Database::fetch($query);
+        $users;
+        while ($row[] = Database::fetch($query)) {
             $users = $row;
-            };
-            print_r(json_encode($users));
-        }
+        };
+        print_r(json_encode($users));
+    }
 }

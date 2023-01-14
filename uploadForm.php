@@ -5,37 +5,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $user = new Users();
     $showUsers = $user->getUser();
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $filename = "files/" . $_FILES["image"]["name"];
+    move_uploaded_file($_FILES["image"]["tmp_name"], $filename);
+    $user = new Users();
+    $user->createUser($_REQUEST["title"], $_REQUEST["textarea"], $_REQUEST["price"], $filename);
+    $user->getUser();
 
-  $user = new Users();
-  $user->createUser($_REQUEST["title"],$_REQUEST["textarea"], $_REQUEST["price"]);
-  $user->getUser();
 } else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
 
-//
-// // $json = file_get_contents('php://input');
-// //  $id = json_decode($json,true);
-// // print_r($id["id"]);
-// //
-// $description = $id["description"];
-// $price = $id["price"];
-// $id = $id["id"];
-// // print_r($_GET["id"]);
-//   $user = new Users();
-// //   print_r($_GET["id"]);
-// //   $data = [$_REQUEST["id"], $_REQUEST["title"], $_REQUEST["textarea"], $_REQUEST["price"]];
-//   $user->updateUser($_PUT);
-//     $user->createUser($description, $price, $id);
-//     $user->getUser();
-// print_r(json_encode($user));
-
-
-
 } else if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-  $json = file_get_contents('php://input');
-  $id = json_decode($json, JSON_BIGINT_AS_STRING);
-  print_r($id["id"]);
-  $user = new Users();
-  $user->deleteUser($id["id"]);
+    $json = file_get_contents('php://input');
+    $id = json_decode($json, JSON_BIGINT_AS_STRING);
+    print_r($id["id"]);
+    $user = new Users();
+    $user->deleteUser($id["id"]);
 }
 class Database
 {
@@ -66,9 +49,9 @@ class Model
 
 class Users extends Model
 {
-    public function createUser($name, $description, $price)
+    public function createUser($name, $description, $price, $filename)
     {
-        Database::query("INSERT INTO `forms` (`name`, `description`, `price`) VALUES ('" . $name . "', '" . $description . "', '" . $price . "')");
+        Database::query("INSERT INTO `forms` (`name`, `description`, `price`, `filename`) VALUES ('" . $name . "', '" . $description . "', '" . $price . "','" . $filename . "')");
     }
     public function getUser()
     {
@@ -76,8 +59,9 @@ class Users extends Model
         //         $user = Database::fetch($query);
         $users;
         while ($row[] = Database::fetch($query)) {
-        $users = $row;
-        };
+            $users = $row;
+        }
+        ;
         print_r(json_encode($users));
     }
 

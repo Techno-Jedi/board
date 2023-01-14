@@ -70,6 +70,10 @@
                                     imagesAndPhone.classList.add("imagesAndPhone");
                                     let img = document.createElement("div");
                                     img.classList.add("image");
+                                    let imgPicture = document.createElement("img");
+                                    img.append(imgPicture)
+                                    imgPicture.setAttribute("src", response[i].filename);
+                                    img.classList.add("imgPicture");
                                     imagesAndPhone.append(img)
                                     let divElementPhone = document.createElement("div");
                                     divElementPhone.classList.add("phone")

@@ -30,6 +30,10 @@
                                     imagesAndPhone.classList.add("imagesAndPhone");
                                     let img = document.createElement("div");
                                     img.classList.add("image");
+                                    let imgPicture = document.createElement("img");
+                                    imgPicture.classList.add("imgPicture");
+                                    img.append(imgPicture)
+                                    imgPicture.setAttribute("src", response[i].filename)
                                     imagesAndPhone.append(img)
                                     let descriptionDivAndSalesman = document.createElement("div");
                                     descriptionDivAndSalesman.classList.add("description-salesman");

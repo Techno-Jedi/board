@@ -5,6 +5,7 @@
             let id = response.id;
             let price = response.price;
             let description = response.description;
+            let filename = response.filename;
             let name = response.name;
             let htmlDivElementForm = createMainDiv();
             let inputHidden =createInputNameHidden(id);
@@ -12,7 +13,7 @@
             let textareaElement = createTextarea(description);
             let inputPrice = createInputPrice(price);
             let imagesAndPhone = createImagesAndPhone();
-            let img = createImg();
+            let img = createImg(filename);
             let divElementPhone = createElementPhone();
             let loading = createLoading();
             let loadingAndSave = createLoadingAndSave();
@@ -30,9 +31,9 @@
             loadingAndSave.append(imagesAndPhone, loading);
 
             let buttunLoading = document.querySelector(".loading");
-            buttunLoading.addEventListener("click", function () {
-                return alert("hi");
-            });
+            // buttunLoading.addEventListener("click", function () {
+            //     return alert("hi");
+            // });
             console.log(response.id)
            let z =  response.id
             let buttunSave = document.querySelector(".phone");
@@ -113,9 +114,13 @@
         return imagesAndPhone;
     }
 
-    function createImg() {
+    function createImg(filename) {
         let img = document.createElement("div");
         img.classList.add("image");
+        let imgPicture = document.createElement("img");
+        img.append(imgPicture)
+        imgPicture.setAttribute("src", filename);
+        img.classList.add("imgPicture");
         return img;
     }
 
@@ -131,9 +136,15 @@
     function createLoading() {
         let divElementPhone = document.createElement("div");
         divElementPhone.classList.add("loading")
-        let elementP = document.createElement("p")
+        let elementP = document.createElement("label")
         elementP.append(document.createTextNode("Загрузка"));
         divElementPhone.append(elementP);
+        elementP.setAttribute("for", "file")
+        let input = document.createElement("input");
+        divElementPhone.append(input);
+        input.setAttribute("type", "file");
+        input.id = "file";
+        input.classList.add("file_img");
         return divElementPhone
     }
 
@@ -142,6 +153,19 @@
         divElement.classList.add("loadingAndSave");
         return divElement;
     }
+    // function loadingPicture(event){
+    //     event.preventDefault();
+    //     let formData = new FormData();
+    //     formData.append('image', document.querySelector().files[0]);
+    //     fetch("put.php", {
+    //         method: 'POST',
+    //         body: formData,
+    //     })
+    //         .then(response => response.json())
+    //         .then(response => function (){
+    //             console.log(response)
+    //         })
+    // }
 
     function goToUploadForm(event) {
         event.preventDefault();
@@ -150,12 +174,13 @@
         let name = document.querySelector(".input_form").value
         let description = document.querySelector(".textarea").value
         let price = document.querySelector(".input_price").value
+        formData.append('image', document.querySelector("#file").files[0]);
         if (name !== "" && description !== "" && price !== "") {
             formData.append('id', id);
             formData.append('title', name);
             formData.append('textarea', description);
             formData.append('price', price);
-            fetch("put.php", {
+            fetch("uploadForm.php", {
                 method: 'POST',
                 body: formData,
             })
@@ -180,6 +205,10 @@
                                 imagesAndPhone.classList.add("imagesAndPhone");
                                 let img = document.createElement("div");
                                 img.classList.add("image");
+                                let imgPicture = document.createElement("img");
+                                imgPicture.classList.add("imgPicture");
+                                img.append(imgPicture)
+                                imgPicture.setAttribute("src", response[i].filename)
                                 imagesAndPhone.append(img)
                                 let divElementPhone = document.createElement("div");
                                 divElementPhone.classList.add("phone")
