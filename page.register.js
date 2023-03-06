@@ -1,18 +1,21 @@
 (function (app) {
     app.PageRegister = {
         draw: function () {
+            app.Header.draw("");
+
             let content = document.querySelector(".content");
-            let divElementMain = createMainDiv();
-            const textRegistr = createTextRegistr();
-            let inputElementEmail = createInputEmail();
-            const textEmail = createTextEmail();
-            let inputElementPhone = createInputPhone();
-            const textPhone = createTextPhone();
-            let inputPassword = createInputPassword();
-            let textPassword = createTextPassword();
+            let divElementMain       = createMainDiv();
+            const textRegistr        = createTextRegistr();
+            let inputElementEmail    = createInputEmail();
+            const textEmail          = createTextEmail();
+            let inputElementPhone    = createInputPhone();
+            const textPhone          = createTextPhone();
+            let inputPassword        = createInputPassword();
+            let textPassword         = createTextPassword();
             let inputPasswordСonfirm = createInputPasswordСonfirm();
-            let textPasswordСonfirm = createTextPasswordСonfirm();
-            let exitButton = createButtonExit();
+            const textPasswordСonfirm  = createTextPasswordСonfirm();
+
+            let exitButton     = createButtonExit();
             let registerButton = createButtonRegistr();
             exitButton.addEventListener("click", goToExit);
             registerButton.addEventListener("click", goToRegister);
@@ -127,16 +130,19 @@
 
     function goToExit() {
         document.querySelector(".content").innerHTML = "";
+        document.querySelector(".header").innerHTML = "";
         AdsBoard.PageLogin.draw();
     }
 
     function goToRegister(event) {
         event.preventDefault();
-        let formData = new FormData();
-        let email = document.querySelector(".email-input").value
-        let phone = document.querySelector(".inputPhone").value
-        let password = document.querySelector(".password-input-register").value
-        if (email !== "" && phone !== "" && password !== "") {
+        let formData  = new FormData();
+        let email     = document.querySelector(".email-input").value
+        let phone     = document.querySelector(".inputPhone").value
+        let password  = document.querySelector(".password-input-register").value
+        if (email    !== "" &&
+            phone    !== "" &&
+            password !== "") {
             formData.append('email', email);
             formData.append('phone', phone);
             formData.append('password', password);
@@ -152,6 +158,9 @@
             })
         } else {
             alert("Не все поля заполнены")
+            document.querySelector(".content").innerHTML = "";
+            document.querySelector(".header").innerHTML  = "";
+
             return AdsBoard.PageRegister.draw();
         }
     }

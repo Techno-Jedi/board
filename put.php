@@ -1,8 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     print_r($_POST["id"]);
+    $filename = "files/" . $_FILES["image"]["name"];
     $user = new Users();
-    $user->createUser($_POST["title"], $_POST["textarea"], $_POST["price"], $_POST["id"], );
+    $user->updateUser($_POST["title"], $_POST["textarea"], $_POST["price"], $filename, $_POST["id"], );
 
 };
 class Database
@@ -34,10 +35,12 @@ class Model
 
 class Users extends Model
 {
-    public function createUser($name, $description, $price, $id)
-    {
-        $query = Database::query("UPDATE `forms` SET `name` = '$name',`description` = '$description',`price` = '$price' WHERE `forms`.`id` =  '$id'");
-    }
+       public function updateUser($name, $description, $price, $filename, $id)
+       {
+           $query = Database::query("UPDATE `forms` SET `name` = '$name',`description` = '$description',`price` = '$price',`filename` = '$filename' WHERE id=" . $id);
+
+       }
+
     public function getUser()
     {
         $query = Database::query("SELECT * FROM `forms` ");

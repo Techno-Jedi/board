@@ -65,9 +65,9 @@ class Users extends Model
         print_r(json_encode($users));
     }
 
-    public function updateUser($description, $price, $id)
+    public function updateUser($name, $description, $price,$filename, $id)
     {
-        $query = Database::query("UPDATE `forms` SET `description` = '$description',`price` = '$price' WHERE `forms`.`id` =  '$id'");
+        $query = Database::query("UPDATE `forms` SET `name` = '$name',`description` = '$description',`price` = '$price',`filename` = '$filename' WHERE `forms`.`id` =  '$id'");
 
     }
 

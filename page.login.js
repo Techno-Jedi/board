@@ -19,10 +19,10 @@ app.PageLogin = {
             registerButton,
             exitButton,
             textPassword,
-            textEmail);
+            textEmail
+        );
         registerButton.addEventListener("click", goToRegister);
         exitButton.addEventListener("click", goToExit);
-
 
     }
 }

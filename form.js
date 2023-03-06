@@ -1,118 +1,139 @@
 (function (app) {
     app.FormPage = {
         draw: function () {
-            let htmlDivElementForm = createMainDiv();
-            let inputElement = createInputName();
-            let textareaElement = createTextarea();
-            let inputPrice = createInputPrice();
-            let imagesAndPhone = createImagesAndPhone();
-            let img = createImg();
-            let divElementPhone = createElementPhone();
-            let loading = createLoading();
-            let loadingAndSave = createLoadingAndSave();
+            let pageForm = createMainDivForm();
+            let name     = inputName();
+            let textarea = inputTextarea();
+            let price    = inputPrice();
+            let createDivImagesAndSave = createImagesAndSave();
+            let createDivImage    = createImg();
+            let divElementPhone   = createElementPhone();
+            let buttonLoading     = createLoading();
+            let divLoadingAndSave = createLoadingAndSave();
+
             app.Header.draw("");
-            app.Header2.draw("");
-            htmlDivElementForm.append(
-                inputElement,
-                textareaElement,
-                inputPrice,
-                img,
-                loadingAndSave
+            app.HeaderNavigationMenu.draw("");
+            pageForm.append(
+                name,
+                textarea,
+                price,
+                createDivImage,
+                divLoadingAndSave
             );
-            imagesAndPhone.append(img, divElementPhone);
-            loadingAndSave.append(imagesAndPhone, loading);
+            createDivImagesAndSave.append(createDivImage, divElementPhone);
+            divLoadingAndSave.append(createDivImagesAndSave, buttonLoading);
 
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
         }
     }
 
-    function createMainDiv() {
+    function createMainDivForm() {
         let content = document.querySelector(".content");
         let divElementMain = document.createElement("div");
         divElementMain.classList.add("adsForm")
         content.append(divElementMain);
+
         return divElementMain;
     }
 
-    function createInputName() {
+    function inputName() {
         let divElement = document.createElement("div");
         let paragraphElement = document.createElement("p");
+
         divElement.append(paragraphElement);
+
         let text = document.createTextNode("Название:");
         paragraphElement.append(text);
         divElement.classList.add("input_form_div");
+
         let htmlInputElement = document.createElement("input");
+
         divElement.append(htmlInputElement)
         htmlInputElement.classList.add("input_form");
         htmlInputElement.setAttribute("name", "title");
         htmlInputElement.setAttribute("type", "text");
+
         return divElement;
     }
 
-    function createTextarea() {
+    function inputTextarea() {
         let divElement = document.createElement("div");
         let paragraphElement = document.createElement("p");
         divElement.append(paragraphElement);
+
         let text = document.createTextNode("Описание:");
         paragraphElement.append(text)
         divElement.classList.add("textarea_div");
+
         let htmlTextAreaElement = document.createElement("textarea");
+
         divElement.append(htmlTextAreaElement)
         htmlTextAreaElement.classList.add("textarea");
         htmlTextAreaElement.setAttribute("name", "textarea");
         htmlTextAreaElement.setAttribute("type", "text");
+
         return divElement;
     }
 
-    function createInputPrice() {
+    function inputPrice() {
         let divElement = document.createElement("div");
         let paragraphElement = document.createElement("p");
+
         divElement.append(paragraphElement);
         let text = document.createTextNode("Цена:");
         paragraphElement.append(text);
         divElement.classList.add("input_price_div");
+
         let htmlInputElement = document.createElement("input");
         htmlInputElement.classList.add("input_price");
         htmlInputElement.setAttribute("name", "price");
         htmlInputElement.setAttribute("type", "number");
-        divElement.append(htmlInputElement)
+        divElement.append(htmlInputElement);
+
         return divElement;
     }
 
-    function createImagesAndPhone() {
+    function createImagesAndSave() {
         let imagesAndPhone = document.createElement("div");
         imagesAndPhone.classList.add("imagesAndPhone");
+
         return imagesAndPhone;
     }
 
     function createImg() {
         let img = document.createElement("div");
         img.classList.add("image");
+
         return img;
     }
 
     function createElementPhone() {
         let divElementPhone = document.createElement("div");
         divElementPhone.classList.add("phone")
+
         let elementP = document.createElement("p")
         elementP.append(document.createTextNode("Сохранить"));
         divElementPhone.append(elementP);
+
         return divElementPhone
     }
 
     function createLoading() {
         let divElementPhone = document.createElement("div");
-        divElementPhone.classList.add("loading")
-        let elementP = document.createElement("label")
+        divElementPhone.classList.add("loading");
+
+        let elementP = document.createElement("label");
         elementP.append(document.createTextNode("Загрузка"));
         divElementPhone.append(elementP);
         elementP.setAttribute("for", "file")
         let input = document.createElement("input");
+
         divElementPhone.append(input);
         input.setAttribute("type", "file");
         input.id = "file";
         input.classList.add("file_img");
+
         return divElementPhone
     }
 
@@ -120,6 +141,7 @@
     function createLoadingAndSave() {
         let divElement = document.createElement("div");
         divElement.classList.add("loadingAndSave");
+
         return divElement;
     }
 
@@ -129,8 +151,11 @@
         let name = document.querySelector(".input_form").value
         let description = document.querySelector(".textarea").value
         let price = document.querySelector(".input_price").value
-            formData.append('image', document.querySelector("#file").files[0]);
-        if (name !== "" && description !== "" && price !== "") {
+            formData.append('image',document.querySelector("#file").files[0]);
+        if (name !== ""
+            && description !== ""
+            && price !== "")
+        {
             formData.append('title', name);
             formData.append('textarea', description);
             formData.append('price', price);

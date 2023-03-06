@@ -2,7 +2,7 @@
     app.PageMyAds = {
         draw: function (res) {
             app.Header.draw("");
-            app.Header2.draw("");
+            app.HeaderNavigationMenu.draw("");
             console.log(res)
             if (res) {
                 fetch(`uploadForm.php?id=${res}` , {
@@ -14,7 +14,7 @@
                             document.querySelector(".header").innerHTML = "";
                             document.querySelector(".content").innerHTML = "";
                             app.Header.draw("");
-                            app.Header2.draw("");
+                            app.HeaderNavigationMenu.draw("");
                             AdsBoard.PageAds.draw(res);
                             console.log(response)
                             for (let i = 0; i < response.length; i++) {
