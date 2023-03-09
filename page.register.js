@@ -2,7 +2,6 @@
     app.PageRegister = {
         draw: function () {
             app.Header.draw("");
-
             let content = document.querySelector(".content");
             let divElementMain       = createMainDiv();
             const textRegistr        = createTextRegistr();
@@ -38,132 +37,132 @@
 
     function createMainDiv() {
         let content = document.querySelector(".content");
-        let divElementMain = document.createElement("div");
-        divElementMain.classList.add("contentForm")
-        content.append(divElementMain);
-        return divElementMain;
-    }
+        let div = document.createElement("div");
+        div.classList.add("contentForm");
+        content.append(div);
 
+        return div;
+    }
     function createTextRegistr() {
-        let divElementExit = document.createElement("div");
-        divElementExit.append(document.createTextNode("Регистрация"));
-        divElementExit.setAttribute("name", "login");
-        divElementExit.classList.add("pageLoginForm");
-        return divElementExit;
-    }
+        let div = document.createElement("div");
+        div.append(document.createTextNode("Регистрация"));
+        div.setAttribute("name", "login");
+        div.classList.add("pageLoginForm");
 
+        return div;
+    }
     function createInputEmail() {
-        let emailField = document.createElement("input");
-        emailField.classList.add("email-input");
-        emailField.setAttribute("name", "email");
-        emailField.setAttribute("type", "text");
-        return emailField;
-    }
+        let input = document.createElement("input");
+        input.classList.add("email-input");
+        input.setAttribute("name", "email");
+        input.setAttribute("type", "text");
 
+        return input;
+    }
     function createTextEmail() {
-        let divElementEmailText = document.createElement("div");
+        let div = document.createElement("div");
         let textEmail = document.createTextNode("E-mail");
-        divElementEmailText.append(textEmail);
-        divElementEmailText.classList.add("email");
-        return divElementEmailText;
-    }
+        div.append(textEmail);
+        div.classList.add("email");
 
+        return div;
+    }
     function createInputPhone() {
-        let emailField = document.createElement("input");
-        emailField.classList.add("inputPhone");
-        emailField.setAttribute("name", "phone");
-        emailField.setAttribute("type", "number");
-        return emailField;
-    }
+        let input = document.createElement("input");
+        input.classList.add("inputPhone");
+        input.setAttribute("name", "phone");
+        input.setAttribute("type", "number");
 
+        return input;
+    }
     function createTextPhone() {
-        let divElementEmailText = document.createElement("div");
+        let div = document.createElement("div");
         let textEmail = document.createTextNode("Телефон");
-        divElementEmailText.append(textEmail);
-        divElementEmailText.classList.add("phoneText");
-        return divElementEmailText;
-    }
+        div.append(textEmail);
+        div.classList.add("phoneText");
 
+        return div;
+    }
     function createInputPassword() {
-        let passwordField = document.createElement("input");
-        passwordField.classList.add("password-input-register");
-        passwordField.setAttribute("name", "password")
-        passwordField.setAttribute("type", "text")
-        return passwordField;
-    }
+        let input = document.createElement("input");
+        input.classList.add("password-input-register");
+        input.setAttribute("name", "password");
+        input.setAttribute("type", "text");
 
+        return input;
+    }
     function createTextPassword() {
-        let textEmailDiv2 = document.createElement("div");
+        let div = document.createElement("div");
         let texEmail2 = document.createTextNode("Пароль");
-        textEmailDiv2.append(texEmail2)
-        textEmailDiv2.classList.add("password-register");
-        return textEmailDiv2;
-    }
+        div.append(texEmail2);
+        div.classList.add("password-register");
 
+        return div;
+    }
     function createInputPasswordСonfirm() {
-        let passwordField = document.createElement("input");
-        passwordField.classList.add("password-input-confirm");
-        return passwordField;
-    }
+        let input = document.createElement("input");
+        input.classList.add("password-input-confirm");
 
+        return input;
+    }
     function createTextPasswordСonfirm() {
-        let textEmailDiv2 = document.createElement("div");
+        let div = document.createElement("div");
         let texEmail2 = document.createTextNode("Подтвердите пароль");
-        textEmailDiv2.append(texEmail2)
-        textEmailDiv2.classList.add("password-confirm-text");
-        return textEmailDiv2;
-    }
+        div.append(texEmail2);
+        div.classList.add("password-confirm-text");
 
+        return div;
+    }
     function createButtonRegistr() {
-        let registerButton = document.createElement("button");
-        registerButton.classList.add("registerButtonText");
-        registerButton.append(document.createTextNode("Зарегистрироваться"));
-        return registerButton
-    }
+        let button = document.createElement("button");
+        button.classList.add("registerButtonText");
+        button.append(document.createTextNode("Зарегистрироваться"));
 
+        return button;
+    }
     function createButtonExit() {
-        let exitButton = document.createElement("button");
-        exitButton.classList.add("exitButtonText");
-        exitButton.append(document.createTextNode("Войти"));
-        return exitButton;
-    }
+        let button = document.createElement("button");
+        button.classList.add("exitButtonText");
+        button.append(document.createTextNode("Войти"));
 
+        return button;
+    }
     function goToExit() {
         document.querySelector(".content").innerHTML = "";
         document.querySelector(".header").innerHTML = "";
         AdsBoard.PageLogin.draw();
     }
-
     function goToRegister(event) {
         event.preventDefault();
         let formData  = new FormData();
-        let email     = document.querySelector(".email-input").value
-        let phone     = document.querySelector(".inputPhone").value
-        let password  = document.querySelector(".password-input-register").value
+        let email     = document.querySelector(".email-input").value;
+        let phone     = document.querySelector(".inputPhone").value;
+        let password  = document.querySelector(".password-input-register").value;
         if (email    !== "" &&
             phone    !== "" &&
             password !== "") {
             formData.append('email', email);
             formData.append('phone', phone);
             formData.append('password', password);
+
             fetch("upload.php", {
                 method: 'POST',
                 body: formData,
-            }).then(function (response) {
+            })
+                .then(function (response) {
                 if (response.status >= 200 && response.status < 300) {
                     document.querySelector(".content").innerHTML = "";
-                    return AdsBoard.PageAds.draw()
-                }
 
+                    return AdsBoard.PageAds.draw();
+                }
             })
         } else {
-            alert("Не все поля заполнены")
+            alert("Не все поля заполнены");
             document.querySelector(".content").innerHTML = "";
             document.querySelector(".header").innerHTML  = "";
 
             return AdsBoard.PageRegister.draw();
         }
     }
-
 })(AdsBoard);
 

@@ -1,27 +1,29 @@
 (function (app) {
     app.FormPage = {
-        draw: function () {
+        draw: function (id) {
             let pageForm = createMainDivForm();
             let name     = inputName();
             let textarea = inputTextarea();
             let price    = inputPrice();
+            let inputHidden = createInputNameHidden(id);
             let createDivImagesAndSave = createImagesAndSave();
             let createDivImage    = createImg();
-            let divElementPhone   = createElementPhone();
+            let createButtonPhone = createElementPhone();
             let buttonLoading     = createLoading();
-            let divLoadingAndSave = createLoadingAndSave();
+            let createDivLoadingAndSave = createLoadingAndSave();
 
             app.Header.draw("");
             app.HeaderNavigationMenu.draw("");
             pageForm.append(
+                inputHidden,
                 name,
                 textarea,
                 price,
                 createDivImage,
-                divLoadingAndSave
+                createDivLoadingAndSave
             );
-            createDivImagesAndSave.append(createDivImage, divElementPhone);
-            divLoadingAndSave.append(createDivImagesAndSave, buttonLoading);
+            createDivImagesAndSave.append(createDivImage, createButtonPhone);
+            createDivLoadingAndSave.append(createDivImagesAndSave, buttonLoading);
 
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
@@ -36,62 +38,71 @@
 
         return divElementMain;
     }
+    function createInputNameHidden(id) {
+        let htmlInputElement = document.createElement("input");
+        htmlInputElement.setAttribute("name", "id");
+        htmlInputElement.setAttribute("type", "hidden");
+        htmlInputElement.id = "id";
+        // htmlInputElement.setAttribute("value", id);
+        htmlInputElement.classList.add("id_hidden");
+        htmlInputElement.value += id;
+
+        return htmlInputElement;
+    }
 
     function inputName() {
         let divElement = document.createElement("div");
-        let paragraphElement = document.createElement("p");
+        let paragraph  = document.createElement("p");
 
-        divElement.append(paragraphElement);
+        divElement.append(paragraph);
 
         let text = document.createTextNode("Название:");
-        paragraphElement.append(text);
+        paragraph.append(text);
         divElement.classList.add("input_form_div");
 
-        let htmlInputElement = document.createElement("input");
-
-        divElement.append(htmlInputElement)
-        htmlInputElement.classList.add("input_form");
-        htmlInputElement.setAttribute("name", "title");
-        htmlInputElement.setAttribute("type", "text");
+        let input = document.createElement("input");
+        divElement.append(input)
+        input.classList.add("input_form");
+        input.setAttribute("name", "title");
+        input.setAttribute("type", "text");
 
         return divElement;
     }
 
     function inputTextarea() {
-        let divElement = document.createElement("div");
-        let paragraphElement = document.createElement("p");
-        divElement.append(paragraphElement);
+        let div = document.createElement("div");
+        let paragraph = document.createElement("p");
+        div.append(paragraph);
 
         let text = document.createTextNode("Описание:");
-        paragraphElement.append(text)
-        divElement.classList.add("textarea_div");
+        paragraph.append(text)
+        div.classList.add("textarea_div");
 
-        let htmlTextAreaElement = document.createElement("textarea");
+        let textarea = document.createElement("textarea");
+        div.append(textarea)
+        textarea.classList.add("textarea");
+        textarea.setAttribute("name", "textarea");
+        textarea.setAttribute("type", "text");
 
-        divElement.append(htmlTextAreaElement)
-        htmlTextAreaElement.classList.add("textarea");
-        htmlTextAreaElement.setAttribute("name", "textarea");
-        htmlTextAreaElement.setAttribute("type", "text");
-
-        return divElement;
+        return div;
     }
 
     function inputPrice() {
-        let divElement = document.createElement("div");
-        let paragraphElement = document.createElement("p");
+        let div = document.createElement("div");
+        let paragraph = document.createElement("p");
+        div.append(paragraph);
 
-        divElement.append(paragraphElement);
         let text = document.createTextNode("Цена:");
-        paragraphElement.append(text);
-        divElement.classList.add("input_price_div");
+        paragraph.append(text);
+        div.classList.add("input_price_div");
 
-        let htmlInputElement = document.createElement("input");
-        htmlInputElement.classList.add("input_price");
-        htmlInputElement.setAttribute("name", "price");
-        htmlInputElement.setAttribute("type", "number");
-        divElement.append(htmlInputElement);
+        let input = document.createElement("input");
+        input.classList.add("input_price");
+        input.setAttribute("name", "price");
+        input.setAttribute("type", "number");
+        div.append(input);
 
-        return divElement;
+        return div;
     }
 
     function createImagesAndSave() {
@@ -109,53 +120,50 @@
     }
 
     function createElementPhone() {
-        let divElementPhone = document.createElement("div");
-        divElementPhone.classList.add("phone")
+        let div = document.createElement("div");
+        div.classList.add("phone")
 
-        let elementP = document.createElement("p")
-        elementP.append(document.createTextNode("Сохранить"));
-        divElementPhone.append(elementP);
+        let paragraph = document.createElement("p")
+        paragraph.append(document.createTextNode("Сохранить"));
+        div.append(paragraph);
 
-        return divElementPhone
+        return div;
     }
 
     function createLoading() {
-        let divElementPhone = document.createElement("div");
-        divElementPhone.classList.add("loading");
+        let div = document.createElement("div");
+        div.classList.add("loading");
 
-        let elementP = document.createElement("label");
-        elementP.append(document.createTextNode("Загрузка"));
-        divElementPhone.append(elementP);
-        elementP.setAttribute("for", "file")
+        let paragraph = document.createElement("label");
+        paragraph.append(document.createTextNode("Загрузка"));
+        div.append(paragraph);
+        paragraph.setAttribute("for", "file");
+
         let input = document.createElement("input");
-
-        divElementPhone.append(input);
+        div.append(input);
         input.setAttribute("type", "file");
         input.id = "file";
         input.classList.add("file_img");
 
-        return divElementPhone
+        return div;
     }
 
-
     function createLoadingAndSave() {
-        let divElement = document.createElement("div");
-        divElement.classList.add("loadingAndSave");
+        let div = document.createElement("div");
+        div.classList.add("loadingAndSave");
 
-        return divElement;
+        return div;
     }
 
     function goToUploadForm(event) {
         event.preventDefault();
         let formData = new FormData();
+
         let name = document.querySelector(".input_form").value
         let description = document.querySelector(".textarea").value
         let price = document.querySelector(".input_price").value
-            formData.append('image',document.querySelector("#file").files[0]);
-        if (name !== ""
-            && description !== ""
-            && price !== "")
-        {
+        formData.append('image', document.querySelector("#file").files[0]);
+        if (name !== "" && description !== "" && price !== "") {
             formData.append('title', name);
             formData.append('textarea', description);
             formData.append('price', price);
@@ -165,61 +173,14 @@
             })
                 .then(response => response.json())
                 .then(function (response) {
-                        document.querySelector(".header").innerHTML = "";
-                        document.querySelector(".content").innerHTML = "";
-                        AdsBoard.PageAds.draw();
+                    document.querySelector(".header").innerHTML = "";
+                    document.querySelector(".content").innerHTML = "";
+                    AdsBoard.PageAds.draw();
                     console.log(response)
-                        for (let i = 0; i < response.length; i++) {
-                            function createMainDiv() {
-                                let content = document.querySelector(".content");
-                                let divElementMains = document.createElement("div");
-                                divElementMains.classList.add("boardAds")
-                                content.append(divElementMains);
-                                let divElementMain = document.createElement("div");
-                                divElementMain.classList.add("imageDescriptionPrice")
-                                divElementMains.append(divElementMain);
-                                let imagesAndPhone = document.createElement("div");
-                                imagesAndPhone.classList.add("imagesAndPhone");
-                                let img = document.createElement("div");
-                                img.classList.add("image");
-                                let imgPicture = document.createElement("img");
-                                imgPicture.classList.add("imgPicture");
-                                img.append(imgPicture)
-                                imgPicture.setAttribute("src", response[i].filename)
-                                imagesAndPhone.append(img)
-                                let divElementPhone = document.createElement("div");
-                                divElementPhone.classList.add("phone")
-                                let elementP = document.createElement("p")
-                                elementP.append(document.createTextNode("Показать телефон"));
-                                divElementPhone.append(elementP);
-                                imagesAndPhone.append(divElementPhone);
-                                let descriptionDivAndSalesman = document.createElement("div");
-                                descriptionDivAndSalesman.classList.add("description-salesman");
-                                let descriptionDiv = document.createElement("div");
-                                let descriptionP = document.createElement("p");
-                                descriptionDiv.append(descriptionP)
-                                descriptionP.innerHTML = response[i].description
-                                descriptionDiv.classList.add("description");
-                                descriptionDivAndSalesman.append(descriptionDiv);
-                                let priceDiv = document.createElement("div");
-                                priceDiv.classList.add("price");
-                                priceDiv.innerHTML = response[i].price
-                                descriptionDivAndSalesman.append(priceDiv);
-                                let divSalesman = document.createElement("div");
-                                divSalesman.classList.add("salesman")
-                                divSalesman.append(document.createTextNode("Продавец:"))
-                                let salesmanP = document.createElement("p")
-                                salesmanP.classList.add("surname");
-                                salesmanP.innerHTML = response[i].name;
-                                divSalesman.append(salesmanP);
-                                salesmanP.append(document.createTextNode(""));
-                                descriptionDivAndSalesman.append(divSalesman)
-                                divElementMain.append(imagesAndPhone, priceDiv, descriptionDivAndSalesman)
-                                return divElementMain;
-                            }
-                            createMainDiv();
-                        }
+                    for (let i = 0; i < response.length; i++) {
+                        createMainDiv(response[i]);
                     }
+                }
                 )
         } else {
             alert("Не все поля заполнены")
@@ -227,6 +188,66 @@
             document.querySelector(".content").innerHTML = "";
             return AdsBoard.FormPage.draw();
         }
+    }
+    function createMainDiv(responseItem) {
+        let content = document.querySelector(".content");
+        let divElementMains = document.createElement("div");
+        divElementMains.classList.add("boardAds");
+        content.append(divElementMains);
+
+        let divElementMain = document.createElement("div");
+        divElementMain.classList.add("imageDescriptionPrice");
+        divElementMains.append(divElementMain);
+
+        let imagesAndPhone = document.createElement("div");
+        imagesAndPhone.classList.add("imagesAndPhone");
+
+        let img = document.createElement("div");
+        img.classList.add("image");
+
+        let imgPicture = document.createElement("img");
+        imgPicture.classList.add("imgPicture");
+        img.append(imgPicture);
+        imgPicture.setAttribute("src", responseItem.filename)
+        imagesAndPhone.append(img);
+
+        let divElementPhone = document.createElement("div");
+        divElementPhone.classList.add("phone");
+
+        let elementP = document.createElement("p");
+        elementP.append(document.createTextNode("Показать телефон"));
+        divElementPhone.append(elementP);
+        imagesAndPhone.append(divElementPhone);
+
+        let descriptionDivAndSalesman = document.createElement("div");
+        descriptionDivAndSalesman.classList.add("description-salesman");
+
+        let descriptionDiv = document.createElement("div");
+
+        let descriptionP = document.createElement("p");
+        descriptionDiv.append(descriptionP);
+        descriptionP.innerHTML = responseItem.description;
+        descriptionDiv.classList.add("description");
+        descriptionDivAndSalesman.append(descriptionDiv);
+
+        let priceDiv = document.createElement("div");
+        priceDiv.classList.add("price");
+        priceDiv.innerHTML = responseItem.price;
+        descriptionDivAndSalesman.append(priceDiv);
+
+        let divSalesman = document.createElement("div");
+        divSalesman.classList.add("salesman");
+        divSalesman.append(document.createTextNode("Продавец:"));
+
+        let salesmanP = document.createElement("p")
+        salesmanP.classList.add("surname");
+        salesmanP.innerHTML = responseItem.name;
+        divSalesman.append(salesmanP);
+        salesmanP.append(document.createTextNode(""));
+        descriptionDivAndSalesman.append(divSalesman)
+        divElementMain.append(imagesAndPhone, priceDiv, descriptionDivAndSalesman);
+
+        return divElementMain;
     }
 
 })(AdsBoard)
