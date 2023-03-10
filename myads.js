@@ -3,7 +3,6 @@
         draw: function (res) {
             app.Header.draw("");
             app.HeaderNavigationMenu.draw("");
-            console.log(res)
             if (res) {
                 fetch(`user.php?id=${res}` , {
                     method: 'GET',
@@ -15,9 +14,9 @@
                     app.Header.draw("");
                     app.HeaderNavigationMenu.draw("");
                     AdsBoard.PageAds.draw(res);
+
                     let user_id = response.map((e)=>e.user_id)
                     const result = user_id.filter(word => word === res);
-                    console.log(result);
                     for (let i = 0; i < result.length; i++) {
                         createMainDiv(result, response[i]);
                     }
@@ -57,7 +56,7 @@
         descriptionDivAndSalesman.classList.add("description-salesman");
 
         let descriptionDiv = document.createElement("div");
-        let descriptionP = document.createElement("p");
+        let descriptionP   = document.createElement("p");
         descriptionDiv.append(descriptionP);
         descriptionP.innerHTML = responseItem.description;
         descriptionDiv.classList.add("description");
@@ -80,9 +79,8 @@
         elementP.onclick = function (event) {
             let target = event.target;
             if (target.tagName != 'P') return;
-            document.querySelector(".header").innerHTML = "";
+            document.querySelector(".header").innerHTML  = "";
             document.querySelector(".content").innerHTML = "";
-            console.log("this response", responseItem);
             AdsBoard.MyFormPage.draw(responseItem);
 
         };
@@ -103,10 +101,7 @@
             if (target.tagName != 'P') return;
             document.querySelector(".header").innerHTML  = "";
             document.querySelector(".content").innerHTML = "";
-            console.log("this response", responseItem);
-
             let id = responseItem;
-            console.log("this response", JSON.stringify(id));
             function removePost() {
                 fetch("uploadForm.php", {
                     method: 'DELETE',

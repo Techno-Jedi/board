@@ -1,8 +1,7 @@
 (function (app) {
     app.Header = {
         draw: function (user_id) {
-            console.log(user_id)
-            let header = document.querySelector(".header")
+            let header      = document.querySelector(".header")
             let createLable = createLableAds();
             header.append(
                 createLable,
@@ -11,10 +10,9 @@
     }
     app.HeaderNavigationMenu = {
         draw: function (user_id) {
-            console.log(user_id)
-            let header = document.querySelector(".header");
+            let header      = document.querySelector(".header");
             let headerRight = createHeaderRight();
-            let nav = app.Menu.create();
+            let nav         = app.Menu.create();
             header.append(
                 nav,
                 headerRight
@@ -47,13 +45,12 @@
            async function ads() {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
-               let res = localStorage.getItem('user');
-             console.log(res)
+                let res = localStorage.getItem('user');
+
                 return AdsBoard.PageMyAds.draw(res);
             }
 
-            function ribbon(user_id) {
-                console.log(user_id)
+           function ribbon(user_id) {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
 
@@ -62,25 +59,20 @@
                 })
                 .then(response => response.json())
                 .then(function (response) {
-
                     document.querySelector(".header").innerHTML  = "";
                     document.querySelector(".content").innerHTML = "";
-
                     AdsBoard.PageAds.draw();
-                    console.log(response)
-                        for (let i = 0; i < response.length; i++) {
-                            createMainDiv(response[i]);
-                        }
+                    for (let i = 0; i < response.length; i++) {
+                        createMainDiv(response[i]);
                     }
-                )
-            };
+                })
+           };
 
             async function exit() {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
 
             await fetch("logout.php")
-
                 .then(response => response.text())
                 .then(function (response) {
                     if (response === "OK") {

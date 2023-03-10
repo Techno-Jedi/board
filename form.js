@@ -43,7 +43,6 @@
         htmlInputElement.setAttribute("name", "id");
         htmlInputElement.setAttribute("type", "hidden");
         htmlInputElement.id = "id";
-        // htmlInputElement.setAttribute("value", id);
         htmlInputElement.classList.add("id_hidden");
         htmlInputElement.value += id;
 
@@ -158,12 +157,11 @@
     function goToUploadForm(event) {
         event.preventDefault();
         let formData = new FormData();
-
-        let name = document.querySelector(".input_form").value
+        let name     = document.querySelector(".input_form").value
         let description = document.querySelector(".textarea").value
         let price = document.querySelector(".input_price").value
-        formData.append('image', document.querySelector("#file").files[0]);
-        if (name !== "" && description !== "" && price !== "") {
+        let image = formData.append('image', document.querySelector("#file").files[0]);
+        if (name !== "" && description !== "" && price !== ""  && image !== null) {
             formData.append('title', name);
             formData.append('textarea', description);
             formData.append('price', price);
@@ -172,19 +170,18 @@
                 body: formData,
             })
                 .then(response => response.json())
-                .then(function (response) {
+                .then(function (response){
                     document.querySelector(".header").innerHTML = "";
                     document.querySelector(".content").innerHTML = "";
+                    alert("Объявление создано")
                     AdsBoard.PageAds.draw();
-                    console.log(response)
                     for (let i = 0; i < response.length; i++) {
                         createMainDiv(response[i]);
                     }
-                }
-                )
+                })
         } else {
-            alert("Не все поля заполнены")
-            document.querySelector(".header").innerHTML = "";
+            alert("Не все поля заполнены");
+            document.querySelector(".header").innerHTML  = "";
             document.querySelector(".content").innerHTML = "";
             return AdsBoard.FormPage.draw();
         }

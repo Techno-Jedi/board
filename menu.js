@@ -32,47 +32,47 @@
     }
 
     function createMenuItemFeed(){
-        let liElement = document.createElement("li");
-        let aElement  = document.createElement("a");
+        let li = document.createElement("li");
+        let a  = document.createElement("a");
 
-        aElement.append(document.createTextNode("Лента"));
-        aElement.classList.add("ribbon")
-        liElement.append(aElement);
+        a.append(document.createTextNode("Лента"));
+        a.classList.add("ribbon")
+        li.append(a);
 
-        return liElement;
+        return li;
     }
 
     function createMyAds(){
-        let liElement2 = document.createElement("li");
-        let aElement2  = document.createElement("a");
+        let li = document.createElement("li");
+        let a  = document.createElement("a");
 
-        aElement2.append(document.createTextNode("Мои объявления"));
-        aElement2.classList.add("MyAds")
-        liElement2.append(aElement2);
+        a.append(document.createTextNode("Мои объявления"));
+        a.classList.add("MyAds")
+        li.append(a);
 
-        return liElement2;
+        return li;
     }
 
     function createMenuItemAppend(){
-        let liElement3 = document.createElement("li");
-        let aElement3  = document.createElement("a");
+        let li = document.createElement("li");
+        let a  = document.createElement("a");
 
-        aElement3.append(document.createTextNode("Добавить"));
-        aElement3.classList.add("add")
-        liElement3.append(aElement3);
+        a.append(document.createTextNode("Добавить"));
+        a.classList.add("add")
+        li.append(a);
 
-        return liElement3
+        return li
     }
 
     function createMenuLogout(){
-        let liElement4 = document.createElement("li");
-        let aElement4  = document.createElement("a");
+        let li = document.createElement("li");
+        let a  = document.createElement("a");
 
-        aElement4.append(document.createTextNode("Выход"));
-        aElement4.setAttribute("id", "exit");
-        liElement4.append(aElement4);
+        a.append(document.createTextNode("Выход"));
+        a.setAttribute("id", "exit");
+        li.append(a);
 
-        return liElement4;
+        return li;
     }
 
 })(AdsBoard);

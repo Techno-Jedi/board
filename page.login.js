@@ -106,17 +106,15 @@ function goToExit(event){
         }).then(response => response.json())
           .then(function (response) {
                 document.querySelector(".content").innerHTML = "";
-                document.querySelector(".header").innerHTML = "";
-
-                console.log("user_id = ", response);
-              localStorage.setItem('user', response)
+                document.querySelector(".header").innerHTML  = "";
+                localStorage.setItem('user', response);
 
                 return  AdsBoard.PageMyAds.draw(response);
               })
     } else {
         alert("Не все поля заполнены или пароль не верный");
         document.querySelector(".content").innerHTML = "";
-        document.querySelector(".header").innerHTML = "";
+        document.querySelector(".header").innerHTML  = "";
 
         return AdsBoard.PageLogin.draw();
     }

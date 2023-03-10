@@ -9,14 +9,14 @@ class User extends Model
     {
         $query =  Database::query("SELECT * FROM `forms` WHERE `user_id` =" . $id );
 
-        while ($row[] = Database::fetch($query) ) {
-                   $user = $row;
-               };
-               print_r(json_encode($user));
+        while ($row[] = Database::fetch($query)) {
+         $user = $row;
+         };
+         print_r(json_encode($user));
     }
 };
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $user = new User();
-    $user_id = $_SESSION["id"];
-    $showUser = $user->getUser($user_id );
-};
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        $user = new User();
+        $user_id = $_SESSION["id"];
+        $showUser = $user->getUser($user_id );
+    };

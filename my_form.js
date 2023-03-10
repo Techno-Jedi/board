@@ -1,7 +1,6 @@
 (function (app) {
     app.MyFormPage = {
         draw: function (response) {
-            console.log(response)
             let id    = response.id;
             let price = response.price;
             let description = response.description;
@@ -31,13 +30,11 @@
             loadingAndSave.append(imagesAndPhone, loading);
 
             let buttunLoading = document.querySelector(".loading");
-            console.log(response.id);
             let z =  response.id;
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
         }
     }
-
     function createMainDiv() {
         let content = document.querySelector(".content");
 
@@ -57,7 +54,6 @@
 
         return input;
     }
-
     function createInputName(y) {
         let div = document.createElement("div");
         let paragraph = document.createElement("p");
@@ -76,7 +72,6 @@
 
         return div;
     }
-
     function createTextarea(x) {
         let div = document.createElement("div");
         let paragraph = document.createElement("p");
@@ -95,7 +90,6 @@
 
         return div;
     }
-
     function createInputPrice(price) {
         let div = document.createElement("div");
         let paragraph = document.createElement("p");
@@ -113,14 +107,12 @@
 
         return div;
     }
-
     function createImagesAndPhone() {
         let createDivImagesAndPhone = document.createElement("div");
         createDivImagesAndPhone.classList.add("imagesAndPhone");
 
         return createDivImagesAndPhone;
     }
-
     function createImg(filename) {
         let img = document.createElement("div");
         img.classList.add("image");
@@ -132,7 +124,6 @@
 
         return img;
     }
-
     function createElementPhone() {
         let div = document.createElement("div");
         div.classList.add("phone");
@@ -143,7 +134,6 @@
 
         return div;
     }
-
     function createLoading() {
         let div = document.createElement("div");
         div.classList.add("loading");
@@ -161,13 +151,12 @@
 
         return div
     }
-
     function createLoadingAndSave() {
         let div = document.createElement("div");
         div.classList.add("loadingAndSave");
+
         return div;
     }
-
     function goToUploadForm(event) {
         event.preventDefault();
         let formData = new FormData();
@@ -191,9 +180,7 @@
                 document.querySelector(".content").innerHTML = "";
                 alert("Данные обновлены");
                 AdsBoard.FormPage.draw();
-                console.log("PageAds",response)
-                }
-            )
+                })
 
         } else {
             alert("Не все поля заполнены")
@@ -202,5 +189,4 @@
             return AdsBoard.FormPage.draw();
         }
     }
-
 })(AdsBoard)
