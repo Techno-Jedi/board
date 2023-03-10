@@ -5,7 +5,7 @@
             app.HeaderNavigationMenu.draw("");
             console.log(res)
             if (res) {
-                fetch(`uploadForm.php?id=${res}` , {
+                fetch(`user.php?id=${res}` , {
                     method: 'GET',
                 })
                 .then(response => response.json())
@@ -17,7 +17,7 @@
                     AdsBoard.PageAds.draw(res);
                     let user_id = response.map((e)=>e.user_id)
                     const result = user_id.filter(word => word === res);
-                    console.log(result)
+                    console.log(result);
                     for (let i = 0; i < result.length; i++) {
                         createMainDiv(result, response[i]);
                     }

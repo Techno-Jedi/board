@@ -107,7 +107,9 @@ function goToExit(event){
           .then(function (response) {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML = "";
+
                 console.log("user_id = ", response);
+              localStorage.setItem('user', response)
 
                 return  AdsBoard.PageMyAds.draw(response);
               })

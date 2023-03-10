@@ -6,8 +6,7 @@ require_once("classes/Crud.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $user = new Crud();
-    $user_id = $_SESSION["id"];
-    $showUsers = $user->getUser($user_id);
+    $showUsers = $user->getUser();
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $filename = "files/" . $_FILES["image"]["name"];

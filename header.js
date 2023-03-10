@@ -1,6 +1,7 @@
 (function (app) {
     app.Header = {
-        draw: function (id) {
+        draw: function (user_id) {
+            console.log(user_id)
             let header = document.querySelector(".header")
             let createLable = createLableAds();
             header.append(
@@ -9,7 +10,8 @@
         }
     }
     app.HeaderNavigationMenu = {
-        draw: function (id) {
+        draw: function (user_id) {
+            console.log(user_id)
             let header = document.querySelector(".header");
             let headerRight = createHeaderRight();
             let nav = app.Menu.create();
@@ -35,36 +37,27 @@
             let exitId = document.querySelector('#exit');
             exitId.addEventListener('click', exit);
 
-            function add(id) {
+            function add(user_id) {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
                 
-                return AdsBoard.FormPage.draw(id);
+                return AdsBoard.FormPage.draw(user_id);
             }
 
-            function ads() {
+           async function ads() {
+                document.querySelector(".content").innerHTML = "";
+                document.querySelector(".header").innerHTML  = "";
+               let res = localStorage.getItem('user');
+             console.log(res)
+                return AdsBoard.PageMyAds.draw(res);
+            }
+
+            function ribbon(user_id) {
+                console.log(user_id)
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
 
-                // fetch("uploadForm.php", {
-                //     method: 'GET',
-                // })
-                //     .then(response => response.json())
-                //     .then(function (response) {
-                //         // let user_id = response.map((e)=>e.user_id)
-                //         // const result = user_id.filter(word => word === res);
-                //
-                //
-                //         console.log("console.log(id)",id)
-                //     })
-                return AdsBoard.PageMyAds.draw(id);
-            }
-
-            function ribbon() {
-                document.querySelector(".content").innerHTML = "";
-                document.querySelector(".header").innerHTML  = "";
-
-                fetch("user.php", {
+                fetch("uploadForm.php", {
                     method: 'GET',
                 })
                 .then(response => response.json())

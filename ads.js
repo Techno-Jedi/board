@@ -1,9 +1,9 @@
 (function (app) {
     app.PageAds = {
-        draw: function () {
+        draw: function (user_id) {
             document.querySelector(".header").innerHTML = "";
-            app.Header.draw("");
-            app.HeaderNavigationMenu.draw("");
+            app.Header.draw(user_id);
+            app.HeaderNavigationMenu.draw(user_id);
        }
     }
 })(AdsBoard);
