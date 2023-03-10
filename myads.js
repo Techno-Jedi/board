@@ -10,20 +10,22 @@
                 })
                 .then(response => response.json())
                 .then(function (response) {
-                    document.querySelector(".header").innerHTML = "";
+                    document.querySelector(".header").innerHTML  = "";
                     document.querySelector(".content").innerHTML = "";
                     app.Header.draw("");
                     app.HeaderNavigationMenu.draw("");
                     AdsBoard.PageAds.draw(res);
-                    console.log(response)
-                    for (let i = 0; i < response.length; i++) {
-                        createMainDiv(response[i]);
+                    let user_id = response.map((e)=>e.user_id)
+                    const result = user_id.filter(word => word === res);
+                    console.log(result)
+                    for (let i = 0; i < result.length; i++) {
+                        createMainDiv(result, response[i]);
                     }
                 });
             }
         }
     }
-    function createMainDiv(responseItem) {
+    function createMainDiv(res, responseItem) {
 
         let content = document.querySelector(".content");
         let divElementMains = document.createElement("div");
@@ -32,7 +34,7 @@
 
         let inputHidden = document.createElement("input");
         inputHidden.setAttribute("type", "hidden");
-        inputHidden.setAttribute("dataset-test", responseItem.id);
+        inputHidden.setAttribute("dataset-test", res);
         divElementMains.append(inputHidden);
 
         let divElementMain = document.createElement("div");
@@ -99,7 +101,7 @@
 
             let target = event.target;
             if (target.tagName != 'P') return;
-            document.querySelector(".header").innerHTML = "";
+            document.querySelector(".header").innerHTML  = "";
             document.querySelector(".content").innerHTML = "";
             console.log("this response", responseItem);
 
@@ -112,7 +114,7 @@
                 })
                     .then(response => response.json())
                     .then(function (response) {
-                        document.querySelector(".header").innerHTML = "";
+                        document.querySelector(".header").innerHTML  = "";
                         document.querySelector(".content").innerHTML = "";
                         AdsBoard.FormPage.draw();
                     }).catch(function (error) {
@@ -129,6 +131,7 @@
         priceDiv.classList.add("price");
         priceDiv.innerHTML = responseItem.price
         changePriceAndChange.append(priceDiv);
+
         divElementMain.append(imagesAndPhone, descriptionDivAndSalesman, changePriceAndChange);
 
         return divElementMain;

@@ -32,27 +32,31 @@
                 menu.classList.toggle('active');
             })
 
-            let exitId  = document.querySelector('#exit');
+            let exitId = document.querySelector('#exit');
             exitId.addEventListener('click', exit);
 
             function add(id) {
                 document.querySelector(".content").innerHTML = "";
-                document.querySelector(".header").innerHTML = "";
+                document.querySelector(".header").innerHTML  = "";
                 
                 return AdsBoard.FormPage.draw(id);
             }
 
-            function ads(id) {
+            function ads() {
                 document.querySelector(".content").innerHTML = "";
-                document.querySelector(".header").innerHTML = "";
+                document.querySelector(".header").innerHTML  = "";
 
-                fetch("uploadForm.php", {
-                    method: 'GET',
-                })
-                    .then(response => response.json())
-                    .then(function (response) {
-                        console.log("console.log(id)",response)
-                    })
+                // fetch("uploadForm.php", {
+                //     method: 'GET',
+                // })
+                //     .then(response => response.json())
+                //     .then(function (response) {
+                //         // let user_id = response.map((e)=>e.user_id)
+                //         // const result = user_id.filter(word => word === res);
+                //
+                //
+                //         console.log("console.log(id)",id)
+                //     })
                 return AdsBoard.PageMyAds.draw(id);
             }
 
@@ -60,7 +64,7 @@
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
 
-                fetch("uploadForm.php", {
+                fetch("user.php", {
                     method: 'GET',
                 })
                 .then(response => response.json())
@@ -74,7 +78,6 @@
                         for (let i = 0; i < response.length; i++) {
                             createMainDiv(response[i]);
                         }
-                        
                     }
                 )
             };
