@@ -12,6 +12,8 @@
             let buttonLoading     = createLoading();
             let createDivLoadingAndSave = createLoadingAndSave();
 
+         
+  
             app.Header.draw("");
             app.HeaderNavigationMenu.draw("");
             pageForm.append(
@@ -25,9 +27,22 @@
             createDivImagesAndSave.append(createDivImage, createButtonPhone);
             createDivLoadingAndSave.append(createDivImagesAndSave, buttonLoading);
 
+            let loading = document.querySelector('.loading');
+
+            loading.addEventListener("change", previewFile);
+
+            function previewFile() {
+                
+                let preview = document.querySelector('.imgPicture');
+                let file    = document.querySelector('input[type=file]').files[0];
+                preview.setAttribute("src","files/" + file.name);   
+       
+            }
+
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
         }
+
     }
 
     function createMainDivForm() {
@@ -110,25 +125,6 @@
 
         return imagesAndPhone;
     }
-
-    function createImg() {
-        let img = document.createElement("div");
-        img.classList.add("image");
-
-        return img;
-    }
-
-    function createElementPhone() {
-        let div = document.createElement("div");
-        div.classList.add("phone")
-
-        let paragraph = document.createElement("p")
-        paragraph.append(document.createTextNode("Сохранить"));
-        div.append(paragraph);
-
-        return div;
-    }
-
     function createLoading() {
         let div = document.createElement("div");
         div.classList.add("loading");
@@ -143,6 +139,28 @@
         input.setAttribute("type", "file");
         input.id = "file";
         input.classList.add("file_img");
+
+        return div;
+    }
+
+    function createImg() {
+        let img = document.createElement("div");
+        img.classList.add("image");
+
+        let imgPicture = document.createElement("img");
+        img.append(imgPicture);
+        imgPicture.classList.add("imgPicture");
+  
+        return img;
+    }
+
+    function createElementPhone() {
+        let div = document.createElement("div");
+        div.classList.add("phone")
+
+        let paragraph = document.createElement("p")
+        paragraph.append(document.createTextNode("Сохранить"));
+        div.append(paragraph);
 
         return div;
     }

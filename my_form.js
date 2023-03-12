@@ -29,8 +29,16 @@
             imagesAndPhone.append(image, divElementPhone);
             loadingAndSave.append(imagesAndPhone, loading);
 
-            let buttunLoading = document.querySelector(".loading");
-            let z =  response.id;
+            let buttunLoading = document.querySelector('.loading');
+            buttunLoading.addEventListener("change", previewFile);
+
+            function previewFile() {
+
+                let preview = document.querySelector('.imgPicture');
+                let file    = document.querySelector('input[type=file]').files[0];
+                preview.setAttribute("src","files/" + file.name);
+            }
+            
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
         }
@@ -120,7 +128,7 @@
         let imgPicture = document.createElement("img");
         img.append(imgPicture);
         imgPicture.setAttribute("src", filename);
-        img.classList.add("imgPicture");
+        imgPicture.classList.add("imgPicture");
 
         return img;
     }
