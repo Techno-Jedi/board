@@ -33,19 +33,16 @@
             buttunLoading.addEventListener("change", previewFile);
 
             function previewFile() {
-
                 let preview = document.querySelector('.imgPicture');
                 let file    = document.querySelector('input[type=file]').files[0];
                 preview.setAttribute("src","files/" + file.name);
             }
-            
             let buttunSave = document.querySelector(".phone");
             buttunSave.addEventListener("click", goToUploadForm);
         }
     }
     function createMainDiv() {
         let content = document.querySelector(".content");
-
         let divElementMain = document.createElement("form");
         divElementMain.classList.add("adsForm");
         content.append(divElementMain);
@@ -62,7 +59,7 @@
 
         return input;
     }
-    function createInputName(y) {
+    function createInputName(name) {
         let div = document.createElement("div");
         let paragraph = document.createElement("p");
         div.append(paragraph);
@@ -76,17 +73,17 @@
         input.classList.add("input_form");
         input.setAttribute("name", "title");
         input.setAttribute("type", "text");
-        input.value += y;
+        input.value += name;
 
         return div;
     }
-    function createTextarea(x) {
+    function createTextarea(text) {
         let div = document.createElement("div");
         let paragraph = document.createElement("p");
         div.append(paragraph);
 
-        let text = document.createTextNode("Описание:");
-        paragraph.append(text)
+        let description = document.createTextNode("Описание:");
+        paragraph.append(description)
         div.classList.add("textarea_div");
 
         let textarea = document.createElement("textarea");
@@ -94,7 +91,7 @@
         textarea.classList.add("textarea");
         textarea.setAttribute("name", "textarea");
         textarea.setAttribute("type", "text");
-        textarea.innerHTML = x;
+        textarea.innerHTML = text;
 
         return div;
     }
@@ -178,7 +175,7 @@
             formData.append('title', name);
             formData.append('textarea', description);
             formData.append('price', price);
-            fetch("put.php", {
+            fetch("php/put.php", {
                 method: 'POST',
                 body: formData,
             })

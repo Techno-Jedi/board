@@ -10,7 +10,7 @@ class Crud extends Model
     {
         $query = Database::query("SELECT * FROM `forms`");
 
-        while ($row[] = Database::fetch($query) ) {
+        while ($row[] = Database::fetch($query)) {
             $users = $row;
         };
         print_r(json_encode($users));

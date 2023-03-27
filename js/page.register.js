@@ -145,7 +145,7 @@
             formData.append('phone', phone);
             formData.append('password', password);
 
-            fetch("upload.php", {
+            fetch("php/upload.php", {
                 method: 'POST',
                 body: formData,
             })

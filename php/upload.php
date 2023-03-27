@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("classes/Database.php");
-require_once("classes/Model.php");
-require_once("classes/Users.php");
+require_once("../classes/Database.php");
+require_once("../classes/Model.php");
+require_once("../classes/Users.php");
 
 $email    = $_REQUEST['email'];
 $password = $_REQUEST['password'];

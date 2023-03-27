@@ -65,9 +65,9 @@ function createInputPassword() {
     return div;
 }
 function createTextPassword() {
-    let div       = document.createElement("div");
-    let texEmail2 = document.createTextNode("Пароль");
-    div.append(texEmail2);
+    let div = document.createElement("div");
+    let texEmailPassword = document.createTextNode("Пароль");
+    div.append(texEmailPassword);
     div.classList.add("password");
 
     return div;
@@ -100,7 +100,7 @@ function goToExit(event){
     if (email !== "" && password !== "") {
         formData.append('email', email);
         formData.append('password', password);
-        fetch("upload.php", {
+        fetch("php/upload.php", {
             method: 'POST',
             body: formData,
         }).then(response => response.json())

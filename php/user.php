@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("classes/Database.php");
-require_once("classes/Model.php");
+require_once("../classes/Database.php");
+require_once("../classes/Model.php");
 
 class User extends Model
 {

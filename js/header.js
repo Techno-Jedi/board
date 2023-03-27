@@ -1,6 +1,6 @@
 (function (app) {
     app.Header = {
-        draw: function (user_id) {
+        draw: function () {
             let header      = document.querySelector(".header")
             let createLable = createLableAds();
             header.append(
@@ -9,7 +9,7 @@
         }
     }
     app.HeaderNavigationMenu = {
-        draw: function (user_id) {
+        draw: function () {
             let header      = document.querySelector(".header");
             let headerRight = createHeaderRight();
             let nav         = app.Menu.create();
@@ -35,26 +35,24 @@
             let exitId = document.querySelector('#exit');
             exitId.addEventListener('click', exit);
 
-            function add(user_id) {
+            function add() {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
                 
-                return AdsBoard.FormPage.draw(user_id);
+                return AdsBoard.FormPage.draw();
             }
-
            async function ads() {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
-                let res = localStorage.getItem('user');
+                let response = localStorage.getItem('user');
 
-                return AdsBoard.PageMyAds.draw(res);
+                return AdsBoard.PageMyAds.draw(response);
             }
-
-           function ribbon(user_id) {
+           function ribbon() {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
 
-                fetch("uploadForm.php", {
+                fetch("php/uploadForm.php", {
                     method: 'GET',
                 })
                 .then(response => response.json())
@@ -67,12 +65,11 @@
                     }
                 })
            };
-
             async function exit() {
                 document.querySelector(".content").innerHTML = "";
                 document.querySelector(".header").innerHTML  = "";
 
-            await fetch("logout.php")
+            await fetch("php/logout.php")
                 .then(response => response.text())
                 .then(function (response) {
                     if (response === "OK") {
@@ -84,38 +81,60 @@
             }
         }
     }
-
     function createMainDiv(responseItem) {
-        let content = document.querySelector(".content");
-        
-        let divElementMains = document.createElement("div");
-        divElementMains.classList.add("boardAds");
-        content.append(divElementMains);
+        let createContainer   = container(responseItem);
+        let createInputHidden = inputHidden(responseItem);
+        let createDivImageDescriptionPrice = divMain();
+        let createDivImagesAndPhone = containerImagesAndPhone();
+        let createImage = image(responseItem);
+        let createPhone = createPhoneDiv();
+        let showPhone   = phone();
+        let createDescriptionAndSalesman = descriptionAndSalesman(responseItem);
+        let createPrice = price(responseItem);
+        let createSalesman = salesman(responseItem);
 
-        let inputHidden = document.createElement("input");
-        inputHidden.setAttribute("type", "hidden");
-        inputHidden.setAttribute("dataset-test", responseItem.id);
-        divElementMains.append(inputHidden);
+        createContainer.append(createInputHidden, createDivImageDescriptionPrice);
+        showPhone.append(document.createTextNode("Показать телефон"));
+        createPhone.append(showPhone);
+        createDivImagesAndPhone.append(createImage, createPhone);
+        createDescriptionAndSalesman.append(createPrice);
+        createDescriptionAndSalesman.append(createSalesman);
+        createDivImageDescriptionPrice.append(createDivImagesAndPhone, createPrice, createDescriptionAndSalesman);
 
-        let divElementMain = document.createElement("div");
-        divElementMain.classList.add("imageDescriptionPrice");
-        divElementMains.append(divElementMain);
+        return createDivImageDescriptionPrice;
+    }
+    function salesman(responseItem){
+        let divSalesman = document.createElement("div");
+        divSalesman.classList.add("salesman");
+        divSalesman.append(document.createTextNode("Продавец:"));
+        let salesmanP = document.createElement("p")
+        salesmanP.classList.add("surname");
+        salesmanP.innerHTML = responseItem.name;
+        salesmanP.append(document.createTextNode(""));
+        divSalesman.append(salesmanP);
 
-        let imagesAndPhone = document.createElement("div");
-        imagesAndPhone.classList.add("imagesAndPhone");
+        return divSalesman;
+    }
+    function price(responseItem){
+        let priceDiv = document.createElement("div");
+        priceDiv.classList.add("price");
+        priceDiv.innerHTML = responseItem.price;
 
-        let img = document.createElement("div");
-        img.classList.add("image");
+        return priceDiv
+    }
+    function descriptionAndSalesman(responseItem){
+        let descriptionDivAndSalesman = document.createElement("div");
+        descriptionDivAndSalesman.classList.add("description-salesman");
+        let descriptionDiv = document.createElement("div");
+        let descriptionP = document.createElement("p");
+        descriptionDiv.append(descriptionP);
+        descriptionP.innerHTML = responseItem.description;
+        descriptionDiv.classList.add("description");
+        descriptionDivAndSalesman.append(descriptionDiv);
 
-        let imgPicture = document.createElement("img");
-        img.append(imgPicture);
-        imgPicture.setAttribute("src",responseItem.filename);
-        img.classList.add("imgPicture");
-        imagesAndPhone.append(img);
-
-        let divElementPhone = document.createElement("div");
-        divElementPhone.classList.add("phone");
-
+        return descriptionDivAndSalesman;
+    }
+    function phone(){
         let paragraph = document.createElement("p");
         paragraph.onclick = function (event) {
             let target = event.target;
@@ -123,43 +142,51 @@
             paragraph.innerHTML = "+7 XXX XXX XXXX";
             setTimeout(() => paragraph.innerHTML = "Показать телефон", 5000)
         }
-        paragraph.append(document.createTextNode("Показать телефон"));
-        divElementPhone.append(paragraph);
-        imagesAndPhone.append(divElementPhone);
+        return paragraph;
+    }
+    function createPhoneDiv(){
+        let divElementPhone = document.createElement("div");
+        divElementPhone.classList.add("phone");
 
-        let descriptionDivAndSalesman = document.createElement("div");
-        descriptionDivAndSalesman.classList.add("description-salesman");
+        return divElementPhone
+    }
+    function image(responseItem){
+        let img = document.createElement("div");
+        img.classList.add("image");
+        let imgPicture = document.createElement("img");
+        img.append(imgPicture);
+        imgPicture.setAttribute("src",responseItem.filename);
+        img.classList.add("imgPicture");
 
-        let descriptionDiv = document.createElement("div");
+        return img;
+    }
+    function containerImagesAndPhone(){
+        let imagesAndPhone = document.createElement("div");
+        imagesAndPhone.classList.add("imagesAndPhone");
 
-        let descriptionP = document.createElement("p");
-        descriptionDiv.append(descriptionP);
-        descriptionP.innerHTML = responseItem.description;
-        descriptionDiv.classList.add("description");
-        descriptionDivAndSalesman.append(descriptionDiv);
-
-        let priceDiv = document.createElement("div");
-        priceDiv.classList.add("price");
-        priceDiv.innerHTML = responseItem.price;
-        descriptionDivAndSalesman.append(priceDiv);
-
-        let divSalesman = document.createElement("div");
-        divSalesman.classList.add("salesman");
-        divSalesman.append(document.createTextNode("Продавец:"));
-
-        let salesmanP = document.createElement("p")
-        salesmanP.classList.add("surname");
-        salesmanP.innerHTML = responseItem.name;
-        salesmanP.append(document.createTextNode(""));
-
-        divSalesman.append(salesmanP);
-
-        descriptionDivAndSalesman.append(divSalesman);
-        divElementMain.append(imagesAndPhone, priceDiv, descriptionDivAndSalesman);
+        return imagesAndPhone;
+    }
+    function divMain(){
+        let divElementMain = document.createElement("div");
+        divElementMain.classList.add("imageDescriptionPrice");
 
         return divElementMain;
     }
+    function inputHidden(responseItem){
+        let inputHidden = document.createElement("input");
+        inputHidden.setAttribute("type", "hidden");
+        inputHidden.setAttribute("dataset-test", responseItem.id);
 
+        return inputHidden;
+    }
+    function container(responseItem){
+        let content = document.querySelector(".content");
+        let divElementMains = document.createElement("div");
+        divElementMains.classList.add("boardAds");
+        content.append(divElementMains);
+
+        return divElementMains;
+    }
     function createLableAds() {
         let divElement = document.createElement("div");
         divElement.append(document.createTextNode("Объявления.RU"));
@@ -168,20 +195,17 @@
 
         return divElement
     };
-
     function createHeaderRight() {
         let divElement = document.createElement("div");
         divElement.classList.add("header_right");
         divElement.setAttribute("name", "header_right");
 
         return divElement;
-    }
-
+    };
     function createHeaderRight() {
         let divElement = document.createElement("div");
         divElement.classList.add("burger");
         divElement.setAttribute("id", "trigger");
-
         let spanElement1 = document.createElement("span");
         let spanElement2 = document.createElement("span");
         let spanElement3 = document.createElement("span");
@@ -191,5 +215,4 @@
 
         return divElement;
     }
-      
 })(AdsBoard);
