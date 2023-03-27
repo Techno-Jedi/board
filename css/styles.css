@@ -1,0 +1,539 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.content{
+    height: 10rem;
+    width: 100%;
+    position: absolute;
+    box-sizing: border-box;
+}
+.contentForm{
+    height: 7rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 3.75rem;
+    line-height: 3.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background: #0EA5E9;
+    color: white;
+}
+.pageLoginForm {
+    color: #0EA5E9;
+    position: relative;
+    top: 6rem;
+    right: 2rem;
+}
+.email-input{
+    box-sizing: border-box;
+    width: 25rem;
+    height: 3rem;
+    border: 1px solid #0EA5E9;
+    position: absolute;
+    top: 150%;
+    transform: translate(-50%, -50%)
+}
+.email{
+    color: #0EA5E9;
+    position: absolute;
+    top: 180%;
+    margin-left: -180px;
+    transform: translate(-50%, -50%);
+}
+.password-input{
+    box-sizing: border-box;
+    width: 25rem;
+    height: 3rem;
+    border: 1px solid #0EA5E9;
+    position: absolute;
+    top: 220%;
+    transform: translate(-50%, -50%)
+}
+.password{
+    color: #0EA5E9;
+    position: absolute;
+    top: 250%;
+    margin-left: -178px;
+    transform: translate(-50%, -50%)
+}
+.exitButton{
+    width: 12.5rem;
+    height: 2.25rem;
+    background: #0EA5E9;
+    border: 1px solid #0EA5E9;
+    border-radius: 5px;
+    position: absolute;
+    top: 300%;
+    transform: translate(-50%, -50%)
+}
+.registerButton {
+    width: 12.5rem;
+    height: 2.25rem;
+    background: #0EA5E9;
+    border: 1px solid #0EA5E9;
+    border-radius: 5px;
+    position: absolute;
+    top: 350%;
+    transform: translate(-50%, -50%)
+}
+.inputPhone{
+    box-sizing: border-box;
+    width: 25rem;
+    height: 3rem;
+    border: 1px solid #0EA5E9;
+    position: absolute;
+    top: 230%;
+    transform: translate(-50%, -50%)
+}
+.phoneText{
+    color: #0EA5E9;
+    position: absolute;
+    top: 263%;
+    margin-left: -11rem;
+    transform: translate(-50%, -50%);
+}
+.password-input-register{
+    box-sizing: border-box;
+    width: 25rem;
+    height: 3rem;
+    border: 1px solid #0EA5E9;
+    position: absolute;
+    top: 310%;
+    transform: translate(-50%, -50%)
+}
+.password-register{
+    color: #0EA5E9;
+    position: absolute;
+    top: 340%;
+    margin-left: -178px;
+    transform: translate(-50%, -50%)
+}
+.password-input-confirm{
+    box-sizing: border-box;
+    width: 25rem;
+    height: 3rem;
+    border: 1px solid #0EA5E9;
+    position: absolute;
+    top: 380%;
+    transform: translate(-50%, -50%)
+}
+.password-confirm-text{
+    color: #0EA5E9;
+    position: absolute;
+    top: 410%;
+    margin-left: -135px;
+    transform: translate(-50%, -50%)
+}
+.registerButtonText{
+    width: 12.5rem;
+    height: 2.25rem;
+    background: #0EA5E9;
+    border: 1px solid #0EA5E9;
+    border-radius: 5px;
+    position: absolute;
+    top: 470%;
+    transform: translate(-50%, -50%)
+}
+.exitButtonText{
+    width: 12.5rem;
+    height: 2.25rem;
+    background: #0EA5E9;
+    border: 1px solid #0EA5E9;
+    border-radius: 5px;
+    position: absolute;
+    top: 520%;
+    transform: translate(-50%, -50%)
+}
+.boardAds{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    margin: 2rem 1rem 4rem 1rem;
+    top: 2rem;
+}
+.imageDescriptionPrice{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 15rem;
+    margin: 0 1rem 1rem 0;
+}
+.imagesAndPhone{
+    height: 16rem;
+    width: 12rem;
+    margin: 1rem;
+}
+.image{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 10rem;
+    width: 12rem;
+    margin: 0 1rem 1rem 0;
+    border: 1px solid black;
+}
+.phone{
+    display: flex;
+    height: 3rem;
+    background-color: #0EA5E9;
+}
+.phone p{
+    margin: auto;
+}
+.priceAndChange{
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    margin-left: auto;
+}
+.DeleteAndChange{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: auto;
+
+}
+.change{
+    display: flex;
+    position: relative;
+    height: 3rem;
+    width: 13vw;
+    background-color: #0EA5E9;
+    box-sizing: border-box;
+}
+
+.change p{
+    margin: auto;
+    font-size: 2vw;
+}
+
+.delete{
+    display: flex;
+    height: 3rem;
+    width: 13vw;
+    margin-left: 1vw;
+    background-color: #0EA5E9;
+
+}
+.delete p{
+    margin: auto;
+    font-size: 2vw;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 10rem;
+    padding: 1rem;
+    font-size: 1.7rem;
+}
+.description p{
+    margin: 0;
+}
+.price{
+    /*display: flex;*/
+    /*flex-flow: row;*/
+    /*position: relative;*/
+    /*box-sizing: border-box;*/
+    /*height: 2rem;*/
+    order: 1;
+    margin-left: auto;
+    /*left: 0;*/
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+.salesman{
+     margin: 0.3rem 0 0 1rem;
+
+}
+.surname{
+    display: flex;
+    text-align: center;
+}
+.description-salesman{
+    /*height: 15rem;*/
+    margin: 0 1rem 1rem 0;
+}
+.loadingAndSave{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+@media  (max-width: 600px) {
+    .boardAds {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-sizing: border-box;
+        margin: 2rem 0 4rem 1rem;
+        top: 2rem;
+    }
+    .imageDescriptionPrice{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        position: relative;
+        height: auto;
+        margin: 0 0 1rem 0;
+
+    }
+    .image{
+        height: 12rem;
+        width: 12rem;
+        margin: auto;
+        margin-bottom: 1rem;
+        border: 1px solid black;
+    }
+    .price{
+        /*display: flex;*/
+        /*flex-flow: row;*/
+        /*position: relative;*/
+        /*box-sizing: border-box;*/
+        /*height: 2rem;*/
+        /*font-size: 1.5rem;*/
+        /*white-space: nowrap;*/
+        order: 0;
+        margin-left: 1rem;
+    }
+    .description{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: auto;
+        font-size: 1.3rem;
+    }
+    .description p{
+        margin: 0;
+    }
+    .phone{
+        box-sizing: border-box;
+        position: relative;
+        text-align: center;
+        padding-bottom: 0.3rem;
+        background-color: #0EA5E9;
+    }
+    .imagesAndPhone{
+        height: 16rem;
+        width: 12rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .loadingAndSave{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: auto;
+    }
+    .priceAndChange {
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 15rem;
+    }
+    .DeleteAndChange {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-top: 1rem;
+        width: 15rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .change{
+        display: flex;
+        position: relative;
+        height: 3rem;
+        width: 100%;
+        background-color: #0EA5E9;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .change p{
+        margin: auto;
+        font-size: 5vw;
+    }
+    .delete{
+        display: flex;
+        height: 3rem;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #0EA5E9;
+    }
+    .delete p{
+        margin: auto;
+        font-size: 5vw;
+    }
+    .burger {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index:1;
+        overflow: hidden;
+        width: 3rem;
+        height: 2rem;
+        padding: 3px;
+        border: none;
+        font-size: 0;
+        color: transparent;
+        top: 20%;
+     }
+    .burger span {
+        width: 30px;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #222222;
+        transition: all 0.5s;
+    }
+    .burger span:nth-of-type(2) {
+        top: calc(50% - 5px);
+    }
+    .burger span:nth-of-type(3) {
+        top: calc(50% + 5px);
+    }
+    .menu{
+        position: fixed;
+        top: 0;
+        right: 0;
+        /*width: 100%;*/
+        padding: 1rem;
+        /*background-color: #0EA5E9;*/
+        transform: translateX(100%);
+        transition: transform 0.5s;
+        text-decoration: none;
+    }
+    .menu.active {
+        display: block;
+        transform: translateX(0);
+        background-color: #0EA5E9;
+        z-index: 1;
+    }
+    .menu.active ul {
+     display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        padding-left: 0;
+        padding-top: 1rem;
+    }
+    .menu.active li {
+        list-style-type: none;
+        background-color: #0EA5E9;
+        color: white;
+    }
+    .menu li a:hover {
+        text-decoration: underline;
+    }
+
+}
+.menu ul {
+    display: inline;
+}
+.menu li {
+    display: inline;
+    padding-right: 1rem;
+}
+.menu li a{
+    display: inline;
+    padding-right: 1rem;
+    color: white;
+    text-decoration: none;
+}
+.menu li a:hover {
+    text-decoration: underline;
+}
+.ads{
+    flex-grow: 1;
+}
+.exit{
+    position: relative;
+}
+.my_ads{
+    position: relative;
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+.input_form_div{
+    display: flex;
+    flex-direction:column;
+    height: 4rem;
+    margin: 3rem 0 0 0;
+}
+p{
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19px;
+    color: #000000;
+}
+.input_form{
+    position: relative;
+    height: 3rem;
+    margin: 0;
+}
+.textarea_div{
+    display: flex;
+    flex-direction:column;
+    height: 10rem;
+    margin: 3rem 0 2rem 0;
+}
+.textarea{
+    position: relative;
+    height: 10rem;
+    margin: 0;
+}
+
+.adsForm{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.input_form_price{
+    position: relative;
+    height: 3rem;
+    margin: 0 0 3rem 0;
+}
+.input_price_div{
+    display: flex;
+    flex-direction:column;
+    height: 4rem;
+    margin: 0 0 2rem 0;
+}
+.input_price{
+    position: relative;
+    height: 3rem;
+    margin: 0;
+}
+.loading{
+    display: flex;
+    height: 3rem;
+    width: 12rem;
+    background-color: #0EA5E9;
+    margin: 1rem;
+}
+.loading label{
+    margin: auto;
+    font-size: 18px;
+}
+.file_img{
+    display: none;
+}
+.imgPicture{
+    display: inline-block;
+    width:100%;
+    height:10rem;
+    overflow:hidden;
+}
